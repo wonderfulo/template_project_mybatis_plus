@@ -1,0 +1,17 @@
+spring:
+  rabbitmq:
+    # 服务器地址
+    addresses: localhost
+    port: 5672
+    username: guest
+    password: guest
+    # 是否确认发送的消息已经被消费
+#    publisher-confirms: true # 已弃用
+    # 确认发送的消息已经被消费
+    publisher-confirm-type: correlated
+rabbitmq:
+  queue:
+    # RabbitMq的消息队列名称，由它发送字符串
+    msg: spring-boot-msg
+    # RabbitMq的消息队列的名称，由它发送用户对象
+    user: spirng-boot-queue-user

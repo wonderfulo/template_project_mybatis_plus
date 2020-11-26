@@ -1,0 +1,100 @@
+<!doctype html>
+
+<!--注意：引入thymeleaf的名称空间-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>文件上传</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
+</head>
+<body>
+    <form id="form" method="post" action="/upload/file" enctype="multipart/form-data">
+        <input id="file" type="file" name="file" value="请选择文件上传">
+        <input type="submit" value="提交">
+        <input id="button" type="button" value="测试">
+        <input id="stop" type="button" value="停止">
+
+    </form>
+    <div id="open_content" style="padding:20px;">
+        <!-- 外层div 进度条的整体视觉和位置设置 -->
+        <div style="width:300px;height: 20px;border: 1px solid #CCC;">
+            <!-- 内层div  逐渐递增的进度条 -->
+            <div id="jdt" style="height: 20px;"></div>
+        </div>
+        <div style="margin-top:16px;">
+            <p style="margin-top:16px;">总大小<span id="total"></span>；</p>
+            <p style="margin-top:16px;">已上传<span id="loaded"></span>；</p>
+        </div><br>
+    </div>
+
+    <script>
+        var xhrOnProgress=function(fun) {
+            xhrOnProgress.onprogress = fun; //绑定监听
+            //使用闭包实现监听绑
+            return function() {
+
+                //通过$.ajaxSettings.xhr();获得XMLHttpRequest对象
+                var xhr = $.ajaxSettings.xhr();
+                //判断监听函数是否为函数
+                if (typeof xhrOnProgress.onprogress !== 'function')
+                    return xhr;
+                //如果有监听函数并且xhr对象支持绑定时就把监听函数绑定上去
+                if (xhrOnProgress.onprogress && xhr.upload) {
+                    xhr.upload.onprogress = xhrOnProgress.onprogress;
+                }
+                return xhr;
+            }
+        }
+
+        $(document).ready(function(){
+            let request;
+            $("#button").click(function () {
+                var fileObj = document.getElementById("file").files[0]; // js 获取文件对象
+                var formFile = new FormData();
+                formFile.append("file", fileObj); //加入文件对象
+
+                request = $.ajax({
+                    url: "/upload/file",
+                    type: 'post',
+                    cache: false,
+                    data: formFile,
+                    processData: false,
+                    contentType: false,
+                    async : true,//这一步很重要，必须同步，异步监测不到
+                    success: function (data) {
+
+                    },
+                    xhr: xhrOnProgress(function(evt){
+                        debugger
+
+                        var percent = Math.floor(evt.loaded / evt.total*100);//计算百分比
+                        console.log(percent);
+                        // 设置进度条样式
+                        $('#jdt').css('width',percent * 3 + 'px');
+                        $('#jdt').css('background','skyblue');
+                        //显示进度百分比
+                        $('#jdt').text(percent+'%');
+                        $('#loaded').text(evt.loaded/1024 + 'K');
+                        $('#total').text(evt.total/1024 + 'K');
+                    }),
+                    error: function(){
+
+                    },
+                    beforeSend: function(){
+
+                    }
+                });
+            })
+
+
+            $("#stop").click(function () {
+                request.abort();
+            })
+        })
+    </script>
+</body>
+</html>

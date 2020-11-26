@@ -1,0 +1,3 @@
+mybatis:
+  type-aliases-package: com.cxy.entity
+  mapper-locations: classpath:mapper/*Mapper.xml

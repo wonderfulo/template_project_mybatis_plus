@@ -1,0 +1,3 @@
+#日志的默认级别为debug
+#logging:
+#  level: debug

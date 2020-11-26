@@ -1,0 +1,10 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: template_project
+  profiles:
+    include: datasource,redis,mybatis,log,thymeleaf,file
+
+
