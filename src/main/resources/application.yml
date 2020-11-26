@@ -4,27 +4,12 @@ server:
 spring:
   application:
     name: template_project
-#  profiles:
-#    include: datasource,redis,mybatis,log,thymeleaf,file
+  profiles:
+    include: datasource,redis,mybatis,log,thymeleaf,file
 
-#logging:
-#  level:
-#    org.springframework.boot:
-#      debug
+logging:
+  level:
+    org.springframework.boot:
+      debug
 
 
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.126.1:3306/template_project?characterEncoding=UTF-8&useUnicode=true&autoReconnect=true&zeroDateTimeBehavior=round&useOldAliasMetadataBehavior=true&allowMultiQueries=true&serverTimezone=GMT%2B8
-    username: root
-    password: root
-    tomcat:
-      max-idle: 10
-      max-active: 50
-      max-wait: 10000
-      initial-size: 5
-      #这是默认隔离级别为读写提交
-      default-transaction-isolation: 2
-mybatis:
-  type-aliases-package: com.cxy.entity
-  mapper-locations: classpath:mapper/*Mapper.xml
