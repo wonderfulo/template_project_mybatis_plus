@@ -7,4 +7,9 @@ spring:
   profiles:
     include: datasource,redis,mybatis,log,thymeleaf,file
 
+logging:
+  level:
+    org.springframework.boot:
+      debug
+
 
