@@ -41,6 +41,4 @@ public class TemplateProjectMybatisPlusApplication {
         redisTemplate.setHashKeySerializer(stringSerializer);
     }
 
-    //再次提交
-
 }
