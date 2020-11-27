@@ -14,8 +14,6 @@
     <name>template_project_mybatis_plus</name>
     <description>Demo project for Spring Boot</description>
 
-    <packaging>war</packaging>
-
     <properties>
         <java.version>1.8</java.version>
     </properties>
