@@ -5,7 +5,7 @@ spring:
   application:
     name: template_project
   profiles:
-    include: datasource,redis,mybatis,log,thymeleaf,file
+    include: datasource,mybatis,log,thymeleaf,file
 
 #logging:
 #  level:
