@@ -4,8 +4,12 @@ import com.cxy.exception.MyException;
 import com.cxy.lambda.entity.Album;
 import com.cxy.lambda.entity.Artist;
 import com.cxy.lambda.entity.Track;
+import com.cxy.service.IUserService;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
@@ -24,10 +28,14 @@ import static java.util.stream.Collectors.toSet;
  * @version: $
  */
 @SpringBootTest
+//@RunWith(SpringRunner.class)
 public class LambdaStudy {
 
+    @Autowired
+    private IUserService userService;
+
     @Test
-    public void test1() {
+    public void test1() throws MyException {
         List<String> collected = Stream.of("a", "b", "c")
                 .collect(toList());
         try {

@@ -3,6 +3,7 @@ package com.cxy.controller;
 
 import com.cxy.common.JsonResponse;
 import com.cxy.entity.User;
+import com.cxy.exception.MyException;
 import com.cxy.mapper.UserMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -80,5 +81,20 @@ public class UserController {
         String contextPath = request.getContextPath();
         String realPath = request.getSession().getServletContext().getRealPath("");
         return null;
+    }
+
+    @GetMapping("/exceptionTest")
+    @ApiOperation(
+            value = "异常测试",
+            notes = "异常测试",
+            response = String.class,
+            responseContainer = "List")
+    public JsonResponse<String> exceptionTest(User user, HttpServletRequest request) throws MyException {
+        String contextPath = request.getContextPath();
+        String realPath = request.getSession().getServletContext().getRealPath("");
+
+        throw new MyException("自定义异常");
+
+//        return null;
     }
 }
