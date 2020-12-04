@@ -1,4 +1,4 @@
-package com.cxy.util;
+package com.cxy.utils.date;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -10,6 +10,15 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+
+/**
+ * @author ：陈翔宇
+ * @date ：2020/12/2 15:03
+ * @description：加密工具类
+ * @modified By：
+ * @version: $
+ * 时间工具类
+ */
 public class DateUtil {
 	private static Log log = LogFactory.getLog(DateUtil.class);
 	private static DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss") ;
