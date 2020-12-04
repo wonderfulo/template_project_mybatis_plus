@@ -154,6 +154,12 @@
 <!--            <artifactId>spring-boot-starter-amqp</artifactId>-->
 <!--        </dependency>-->
 
+        <!-- 实现二维码生成与解析 -->
+        <dependency>
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.0.0</version>
+        </dependency>
 
 
 
