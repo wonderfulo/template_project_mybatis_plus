@@ -19,6 +19,10 @@ import java.time.LocalDateTime;
 @Accessors(chain = true)
 public class BaseEntity {
 
+    /**
+     * 0: 可用, 1: 删除
+     */
+    private Integer isDelete;
 
     /**
      * 创建者ID
@@ -39,10 +43,5 @@ public class BaseEntity {
      * 修改时间
      */
     private LocalDateTime updateTime;
-
-    /**
-     * 0: 可用, 1: 删除
-     */
-    private Integer isDelete;
 
 }

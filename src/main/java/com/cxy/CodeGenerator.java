@@ -144,7 +144,8 @@
 ////        strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
 ////        strategy.setInclude("sys_user".split(","));
 //        strategy.setInclude(("" +
-//                "sys_user"
+//                "sys_user" +
+//                ",nation"
 //        ).split(","));
 //        strategy.setControllerMappingHyphenStyle(true);
 //        strategy.setTablePrefix(pc.getModuleName() + "_");
