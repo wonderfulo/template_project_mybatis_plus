@@ -1,5 +1,9 @@
 server:
   port: 8090
+  servlet:
+    context-path: /template    #项目前缀
+#  tomcat:
+#    basedir: D:\test_file2    #增加服务配置，自定义baseDir,  # 经测试无效，改为代码配置
 
 spring:
   application:

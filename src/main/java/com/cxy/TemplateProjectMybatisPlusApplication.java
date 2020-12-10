@@ -17,7 +17,7 @@ import javax.annotation.PostConstruct;
 @MapperScan("com.cxy.mapper")
 //@EnableCaching
 //@EnableWebSecurity
-@EnableScheduling
+//@EnableScheduling
 public class TemplateProjectMybatisPlusApplication {
 
     @Autowired

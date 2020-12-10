@@ -28,7 +28,8 @@ public class UploadController {
             return JsonResponse.fail("上传失败，请选择文件");
         }
         String filename = file.getOriginalFilename();
-        String filePath = "E:" + File.separator + "springboot" + File.separator + "image" + File.separator;
+//        String filePath = "E:" + File.separator + "springboot" + File.separator + "image" + File.separator;
+        String filePath = "D:" + File.separator + "springboot" + File.separator + "image" + File.separator;
         File dest = new File(filePath + filename);
         try {
             file.transferTo(dest);

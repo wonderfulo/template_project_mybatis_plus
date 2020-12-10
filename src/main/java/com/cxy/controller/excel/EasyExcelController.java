@@ -1,9 +1,13 @@
 package com.cxy.controller.excel;
 
 import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.read.builder.ExcelReaderBuilder;
 import com.alibaba.fastjson.JSON;
 import com.cxy.controller.excel.data.DemoData;
 import com.cxy.controller.excel.data.DemoDataListener;
+import com.cxy.entity.Nation;
+import com.cxy.entity.excel_listener.NationListener;
+import com.cxy.service.INationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,11 +26,13 @@ import java.util.Map;
  * @createTime 2020年12月10日 09:26:00
  */
 @RestController
-@RequestMapping("/excel")
-public class ExcelController {
+@RequestMapping("/easyExcel")
+public class EasyExcelController {
 //
 //    @Autowired
 //    private UploadDAO uploadDAO;
+    @Autowired
+    private INationService nationService;
 
     /**
      * 文件下载（失败了会返回一个有部分数据的Excel）
@@ -86,12 +92,13 @@ public class ExcelController {
      * <p>
      * 3. 直接读即可
      */
-//    @PostMapping("upload")
-//    @ResponseBody
-//    public String upload(MultipartFile file) throws IOException {
-//        EasyExcel.read(file.getInputStream(), DemoData.class, new DemoDataListener(uploadDAO)).sheet().doRead();
-//        return "success";
-//    }
+    @PostMapping("/upload")
+    @ResponseBody
+    public String upload(MultipartFile file) throws IOException {
+        // 这里默认读取第一个sheet
+        EasyExcel.read(file.getInputStream(), Nation.class, new NationListener(nationService)).sheet().doRead();
+        return "success";
+    }
 
 //    private List<DownloadData> data() {
 //        List<DownloadData> list = new ArrayList<DownloadData>();

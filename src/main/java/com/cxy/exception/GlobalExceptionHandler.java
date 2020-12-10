@@ -28,6 +28,8 @@ public class GlobalExceptionHandler {
         if (e instanceof MyException){
             System.out.println(e);
             return JsonResponse.fail(e.getMessage());
+        }else{
+            e.printStackTrace();
         }
         return null;
     }

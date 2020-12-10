@@ -12,7 +12,7 @@
 
 </head>
 <body>
-    <form id="form" method="post" action="/upload/file" enctype="multipart/form-data">
+    <form id="form" method="post" action="/template/upload/file" enctype="multipart/form-data">
         <input id="file" type="file" name="file" value="请选择文件上传">
         <input type="submit" value="提交">
         <input id="button" type="button" value="测试">
@@ -58,7 +58,7 @@
                 formFile.append("file", fileObj); //加入文件对象
 
                 request = $.ajax({
-                    url: "/upload/file",
+                    url: "/template/upload/file",
                     type: 'post',
                     cache: false,
                     data: formFile,
