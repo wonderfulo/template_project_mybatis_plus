@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author 陈翔宇
- * @since 2020-11-19
+ * @since 2020-12-10
  */
 @RestController
-@RequestMapping("/t-user-role")
-public class TUserRoleController {
+@RequestMapping("/cxy/sys-user")
+public class SysUserController {
 
 }

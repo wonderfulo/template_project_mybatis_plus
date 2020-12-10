@@ -19,13 +19,11 @@ import java.time.LocalDateTime;
 @Accessors(chain = true)
 public class BaseEntity {
 
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
 
     /**
      * 创建者ID
      */
-    private Long createUserId;
+    private Long createUser;
 
     /**
      * 创建时间
@@ -35,7 +33,7 @@ public class BaseEntity {
     /**
      * 修改者ID
      */
-    private Long updateUserId;
+    private Long updateUser;
 
     /**
      * 修改时间

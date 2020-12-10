@@ -135,18 +135,17 @@
 //        // 公共父类
 ////        strategy.setSuperControllerClass("你自己的父类控制器,没有就不用设置!");
 //        // 写于父类中的公共字段
-//        strategy.setSuperEntityColumns("id"
-//                ,"create_user_id"
-//                ,"create_time"
-//                ,"update_user_id"
-//                ,"update_time"
-//                ,"is_delete");
+//        strategy.setSuperEntityColumns(
+//                "create_user"
+//                , "create_time"
+//                , "update_user"
+//                , "update_time"
+//                , "is_delete");
 ////        strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
 ////        strategy.setInclude("sys_user".split(","));
 //        strategy.setInclude(("" +
-//                "t_user" +
-//                ",t_role" +
-//                ",t_user_role").split(","));
+//                "sys_user"
+//        ).split(","));
 //        strategy.setControllerMappingHyphenStyle(true);
 //        strategy.setTablePrefix(pc.getModuleName() + "_");
 //        mpg.setStrategy(strategy);

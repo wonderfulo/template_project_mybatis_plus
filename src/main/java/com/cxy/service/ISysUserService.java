@@ -1,6 +1,6 @@
 package com.cxy.service;
 
-import com.cxy.entity.TRole;
+import com.cxy.entity.SysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author 陈翔宇
- * @since 2020-11-19
+ * @since 2020-12-10
  */
-public interface ITRoleService extends IService<TRole> {
+public interface ISysUserService extends IService<SysUser> {
 
 }

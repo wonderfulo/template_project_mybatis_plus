@@ -1,6 +1,6 @@
 package com.cxy.mapper;
 
-import com.cxy.entity.TUserRole;
+import com.cxy.entity.SysUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author 陈翔宇
- * @since 2020-11-19
+ * @since 2020-12-10
  */
-public interface TUserRoleMapper extends BaseMapper<TUserRole> {
+public interface SysUserMapper extends BaseMapper<SysUser> {
 
 }

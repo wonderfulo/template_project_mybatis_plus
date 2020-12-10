@@ -1,4 +1,4 @@
-package com.cxy.controller;
+package com.cxy.controller.upload;
 
 import com.cxy.common.JsonResponse;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,15 +23,15 @@ import java.util.List;
 public class UploadController {
 
     @PostMapping("/file")
-    public JsonResponse<String> file(MultipartFile file){
+    public JsonResponse<String> file(MultipartFile file) {
         if (file.isEmpty()) {
             return JsonResponse.fail("上传失败，请选择文件");
         }
         String filename = file.getOriginalFilename();
-        String filePath = "E:"+File.separator+"springboot"+File.separator+"image" + File.separator;
+        String filePath = "E:" + File.separator + "springboot" + File.separator + "image" + File.separator;
         File dest = new File(filePath + filename);
         try {
-                file.transferTo(dest);
+            file.transferTo(dest);
         } catch (IOException e) {
             e.printStackTrace();
             return JsonResponse.fail("上传失败");
@@ -43,7 +43,7 @@ public class UploadController {
     @PostMapping("/multiUpload")
     public String multiUpload(HttpServletRequest request) {
         List<MultipartFile> files = ((MultipartHttpServletRequest) request).getFiles("file");
-        String filePath =  "E:"+File.separator+"springboot"+File.separator+"image" + File.separator;
+        String filePath = "E:" + File.separator + "springboot" + File.separator + "image" + File.separator;
         for (int i = 0; i < files.size(); i++) {
             MultipartFile file = files.get(i);
             if (file.isEmpty()) {

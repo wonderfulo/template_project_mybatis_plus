@@ -2,9 +2,11 @@ package com.cxy.excel;
 
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelReader;
-import com.alibaba.excel.enums.CellExtraTypeEnum;
 import com.alibaba.excel.read.metadata.ReadSheet;
-import com.alibaba.fastjson.JSON;
+import com.cxy.controller.excel.data.DemoData;
+import com.cxy.controller.excel.data.DemoDataListener;
+import com.cxy.controller.excel.data.IndexOrNameData;
+import com.cxy.controller.excel.data.IndexOrNameDataListener;
 import com.cxy.util.TestFileUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +16,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.File;
-import java.util.List;
 
 /**
  * 读的常见写法

@@ -1,4 +1,4 @@
-package com.cxy.excel;
+package com.cxy.controller.excel.data;
 
 import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;
