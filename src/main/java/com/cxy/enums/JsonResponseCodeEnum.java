@@ -26,12 +26,12 @@ public enum JsonResponseCodeEnum {
 	/**
 	 * 返回编码
 	 */
-	private int code;
+	private final int code;
 
 	/**
 	 * 默认返回信息
 	 */
-	private String msg;
+	private final String msg;
 
 	JsonResponseCodeEnum(int code, String msg) {
 		this.code = code;

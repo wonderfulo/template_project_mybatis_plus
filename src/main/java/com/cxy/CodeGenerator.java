@@ -145,7 +145,8 @@
 ////        strategy.setInclude("sys_user".split(","));
 //        strategy.setInclude(("" +
 //                "sys_user" +
-//                ",nation"
+//                ",nation" +
+//                ",tm_document"
 //        ).split(","));
 //        strategy.setControllerMappingHyphenStyle(true);
 //        strategy.setTablePrefix(pc.getModuleName() + "_");
