@@ -169,6 +169,13 @@
             <version>3.0.0</version>
         </dependency>
 
+        <!--Apache Calcite Avatica 1.15.0 发布了，这是一个用于 Hadoop 平台的动态数据管理框架-->
+        <!--导入原因，微信支付用到了其中的类-->
+        <dependency>
+            <groupId>org.apache.calcite.avatica</groupId>
+            <artifactId>avatica-core</artifactId>
+            <version>1.15.0</version>
+        </dependency>
 
 
 
