@@ -20,16 +20,18 @@ import java.util.concurrent.FutureTask;
 public class ExecutorExample {
 
 
-    /**
-     * 根据用户名查询
-     * 使用多线程优化查询
-     * @param inSql   查验SQL
-     * @param objects 绑定参数
-     * @param pg      分页信息
-     * @return List 查询结果集
-     * @throws DAOException
-     */
-//    public List queryBySql2(String inSql, Object[] objects, Page page)
+
+//    超导68期，数据查询过慢，使用多线程优化查询
+//    /**
+//     * 根据用户名查询
+//     * 使用多线程优化查询
+//     * @param inSql   查验SQL
+//     * @param objects 绑定参数
+//     * @param pg      分页信息
+//     * @return List 查询结果集
+//     * @throws DAOException
+//     */
+//    public List queryBySqlAndMultiThread(String inSql, Object[] objects, Page page)
 //            throws DAOException {
 //        try {
 //            final String sqlStr = inSql;
@@ -38,7 +40,6 @@ public class ExecutorExample {
 //            ExecutorService executorService = Executors.newFixedThreadPool(6);
 //            List<FutureTask<Object>> futureTasks = new ArrayList<>();
 //
-            // 线程任务1
 //            futureTasks.add(new FutureTask<>(new Callable<Object>() {
 //                @Override
 //                public Integer call() {
@@ -57,7 +58,6 @@ public class ExecutorExample {
 //                }
 //            }));
 //
-            //线程任务2
 //            futureTasks.add(new FutureTask<>(new Callable<Object>() {
 //                @Override
 //                public List call() {
@@ -84,7 +84,7 @@ public class ExecutorExample {
 //                executorService.submit(futureTask);
 //            }
 //
-//            // 获得任务，关键步骤，只有当任务完成时，才能获取该线程
+//            // 获得任务
 //            FutureTask<Object> objectFutureTask = futureTasks.get(0);
 //            FutureTask<Object> objectFutureTask1 = futureTasks.get(1);
 //
@@ -97,6 +97,7 @@ public class ExecutorExample {
 //            throw new DAOException(e);
 //        }
 //    }
+
 
 
     class Page {
