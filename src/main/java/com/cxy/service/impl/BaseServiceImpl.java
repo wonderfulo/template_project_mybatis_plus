@@ -93,4 +93,17 @@ public class BaseServiceImpl {
 //        query.executeUpdate();
 //
 //    }
+
+
+//    public Session getSession(){
+//        Session session;
+//        try{
+//            session = sessionFactory.getCurrentSession();
+//        }catch (HibernateException e){
+//            session = sessionFactory.openSession();
+//            log.info("session leaking !!!!!!!!!!!!!!!!!!{}",session.hashCode());
+//        }
+//        return session;
+//    }
+
 }
