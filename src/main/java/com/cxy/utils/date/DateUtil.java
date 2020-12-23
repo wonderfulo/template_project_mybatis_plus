@@ -500,4 +500,134 @@ public class DateUtil {
 		return cal.getTime();
 	}
 
+
+	/**
+	 * 获取日期在该年份中是第几周
+	 * 处理了跨年的情况。
+	 * 		1.日期在一年的末尾，则是为一年的最后一周。
+	 * 		2.日期在一年的开始，则是为一年的第一周
+	 * @param date
+	 * @return
+	 * @throws ParseException
+	 */
+	public static int getWeekHandleNewYear(Date date) throws ParseException {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+		int week1 = getWeekByMinimal(date);
+		int week2 = getWeek(date);
+		if (week1 == week2) {
+			System.out.println("当前日期不是跨年周，当前日期为今年的第 " + week1 + "周");
+			return week1;
+		} else {
+			// 获取当月的最后一天
+			String lastDay = getLastDayOfMonth(date);
+			Date lastDate = df.parse(lastDay);
+
+			int i = differentDays(date, lastDate);
+			if (i < 7) {
+				//当前日期在本年的最后一周
+				System.out.println("第" + week1 + "周");
+				return week1;
+			} else {
+				//当前日期在新年的第一周
+				System.out.println("第" + week2 + "周");
+				return week2;
+			}
+		}
+	}
+
+	/**
+	 * 获取当前日期为今天的第几周
+	 * 设置最小周天数为4
+	 *
+	 * @param date
+	 * @return
+	 */
+	public static int getWeekByMinimal(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setFirstDayOfWeek(Calendar.MONDAY);//设置星期一为一周开始的第一天
+		calendar.setMinimalDaysInFirstWeek(4);//可以不用设置
+		calendar.setTime(date);
+		int weekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);//获得当前日期属于今年的第几周
+		return weekOfYear;
+	}
+
+	/**
+	 * 获取当前日期为今天的第几周
+	 * 不设置最小周
+	 *
+	 * @param date
+	 * @return
+	 */
+	public static int getWeek(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setFirstDayOfWeek(Calendar.MONDAY);//设置星期一为一周开始的第一天
+		calendar.setTime(date);
+		int weekOfYear = calendar.get(Calendar.WEEK_OF_YEAR);//获得当前日期属于今年的第几周
+		return weekOfYear;
+	}
+
+	/**
+	 * 获取当月的最后一天
+	 *
+	 * @param date
+	 * @return
+	 */
+	public static String getLastDayOfMonth(Date date) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		int month = calendar.get(Calendar.MONTH) + 1;
+		// 获取某月最大天数
+		int lastDay = 0;
+		//2月的平年瑞年天数
+		if (month == 2) {
+			lastDay = calendar.getLeastMaximum(Calendar.DAY_OF_MONTH);
+		} else {
+			lastDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+		}
+		// 设置日历中月份的最大天数
+		calendar.set(Calendar.DAY_OF_MONTH, lastDay);
+		// 格式化日期
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		return sdf.format(calendar.getTime()) + " 23:59:59";
+	}
+
+	/**
+	 * date2比date1多的天数
+	 *
+	 * @param date1
+	 * @param date2
+	 * @return
+	 */
+	public static int differentDays(Date date1, Date date2) {
+		Calendar cal1 = Calendar.getInstance();
+		cal1.setTime(date1);
+
+		Calendar cal2 = Calendar.getInstance();
+		cal2.setTime(date2);
+		int day1 = cal1.get(Calendar.DAY_OF_YEAR);
+		int day2 = cal2.get(Calendar.DAY_OF_YEAR);
+
+		int year1 = cal1.get(Calendar.YEAR);
+		int year2 = cal2.get(Calendar.YEAR);
+		if (year1 != year2)   //不同一年
+		{
+			int timeDistance = 0;
+			for (int i = year1; i < year2; i++) {
+				if (i % 4 == 0 && i % 100 != 0 || i % 400 == 0)    //闰年
+				{
+					timeDistance += 366;
+				} else    //不是闰年
+				{
+					timeDistance += 365;
+				}
+			}
+
+			return timeDistance + (day2 - day1);
+		} else    //同一年
+		{
+			return day2 - day1;
+		}
+	}
+
 }
