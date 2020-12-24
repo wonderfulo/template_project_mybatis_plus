@@ -25,7 +25,6 @@ public class GlobalInterceptor implements HandlerInterceptor {
 //        if (StringUtils.isEmpty(accessToken)){
 //            throw new MyException("accessToken不能为空");
 //        }
-        System.out.println("6666");
         return true;
     }
 

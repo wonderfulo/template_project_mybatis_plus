@@ -4,8 +4,10 @@ package com.cxy.controller;
 import com.cxy.common.JsonResponse;
 import com.cxy.entity.Nation;
 import com.cxy.entity.User;
+import com.cxy.service.INationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.websocket.server.PathParam;
@@ -24,6 +26,9 @@ import java.util.List;
 @Api("民族控制器")
 public class NationController {
 
+    @Autowired
+    private INationService iNationService;
+
     @GetMapping("/{nationId}")
     @ApiOperation(
             value = "获取测试用户列表",
@@ -32,7 +37,7 @@ public class NationController {
             response = Nation.class,
             responseContainer = "Object")
     public JsonResponse<Nation> get(String accessToken, @PathVariable("nationId") Long nationId) {
-
-        return JsonResponse.success(null);
+        Nation nation = iNationService.getExistById(nationId);
+        return JsonResponse.success(nation);
     }
 }
