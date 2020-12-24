@@ -20,8 +20,6 @@ import javax.servlet.http.HttpServletRequest;
 public class GlobalExceptionHandler {
     private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
-
-
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public JsonResponse<String> defaultExceptionHandler(HttpServletRequest request, Exception e){

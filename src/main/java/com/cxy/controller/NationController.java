@@ -1,9 +1,15 @@
 package com.cxy.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.cxy.common.JsonResponse;
+import com.cxy.entity.Nation;
+import com.cxy.entity.User;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import javax.websocket.server.PathParam;
+import java.util.List;
 
 /**
  * <p>
@@ -14,7 +20,19 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2020-12-10
  */
 @RestController
-@RequestMapping("/cxy/nation")
+@RequestMapping("/nation")
+@Api("民族控制器")
 public class NationController {
 
+    @GetMapping("/{nationId}")
+    @ApiOperation(
+            value = "获取测试用户列表",
+            notes = "创建时间倒序",
+            httpMethod = "GET",
+            response = Nation.class,
+            responseContainer = "Object")
+    public JsonResponse<Nation> get(String accessToken, @PathVariable("nationId") Long nationId) {
+
+        return JsonResponse.success(null);
+    }
 }
