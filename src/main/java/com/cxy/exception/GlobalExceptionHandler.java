@@ -28,7 +28,7 @@ public class GlobalExceptionHandler {
             return JsonResponse.fail(e.getMessage());
         }else{
             e.printStackTrace();
+            return JsonResponse.fail("服务器开小差，请联系管理员");
         }
-        return null;
     }
 }

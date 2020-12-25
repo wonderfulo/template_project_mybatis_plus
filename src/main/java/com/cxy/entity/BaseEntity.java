@@ -31,11 +31,11 @@ public class BaseEntity {
 
     /**
      * 创建时间
-     *  * @JsonFormat: 返回数据时，格式转换
-     *  * @DateTimeFormat: 请求数据时，格式转换
+     * * @JsonFormat: 返回数据时，格式转换
+     * * @DateTimeFormat: 请求数据时，格式转换
      */
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
     /**
@@ -45,23 +45,44 @@ public class BaseEntity {
 
     /**
      * 修改时间
-     *  * @JsonFormat: 返回数据时，格式转换
-     *  * @DateTimeFormat: 请求数据时，格式转换
+     * * @JsonFormat: 返回数据时，格式转换
+     * * @DateTimeFormat: 请求数据时，格式转换
      */
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
 
     /**
      * 对象公用参数基础构建
+     *
      * @param sysUser
      */
-    public void baseBuild(SysUser sysUser){
-        if (this.getCreateUser() == null){
-            this.setCreateUser(sysUser.getSysUserId());
-            this.setCreateTime(new Date());
+    public void baseBuild(SysUser sysUser) {
+        if (this.getCreateUser() == null) {
+            baseCreateBuild(sysUser);
         }
+        baseUpdateBuild(sysUser);
+    }
+
+    /**
+     * 对象公用参数基础构建
+     * 创建信息
+     *
+     * @param sysUser
+     */
+    public void baseCreateBuild(SysUser sysUser) {
+        this.setCreateUser(sysUser.getSysUserId());
+        this.setCreateTime(new Date());
+    }
+
+    /**
+     * 对象公用参数基础构建
+     * 更新信息
+     *
+     * @param sysUser
+     */
+    public void baseUpdateBuild(SysUser sysUser) {
         this.setUpdateUser(sysUser.getSysUserId());
         this.setUpdateTime(new Date());
     }
@@ -69,11 +90,33 @@ public class BaseEntity {
     /**
      * 对象公用参数基础构建
      * 添加对象时使用
+     *
      * @param sysUser
      */
-    public void addBuild(SysUser sysUser){
+    public void addBuild(SysUser sysUser) {
         this.setIsDelete(0);
         baseBuild(sysUser);
+    }
+
+    /**
+     * 对象公用参数基础构建
+     * 删除对象时使用
+     *
+     * @param sysUser
+     */
+    public void delBuild(SysUser sysUser) {
+        this.setIsDelete(1);
+        baseUpdateBuild(sysUser);
+    }
+
+    /**
+     * 对象公用参数基础构建
+     * 更新对象时使用
+     *
+     * @param sysUser
+     */
+    public void updateBuild(SysUser sysUser) {
+        baseUpdateBuild(sysUser);
     }
 
 }
