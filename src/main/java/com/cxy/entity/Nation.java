@@ -10,6 +10,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
+import java.util.Date;
+
 /**
  * <p>
  * 民族表
@@ -32,7 +35,6 @@ public class Nation extends BaseEntity {
     private Long nationId;
 
     @ExcelProperty("民族")
-    private String nation;
-
+    private String nationName;
 
 }
