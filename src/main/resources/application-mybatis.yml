@@ -1,3 +1,9 @@
 mybatis:
   type-aliases-package: com.cxy.entity
   mapper-locations: classpath:mapper/*Mapper.xml
+
+# 显示sql, 分析性能
+mybatis-plus:
+mapper-locations: classpath*::mapper/*Mapper.xml   #这里需要指定xml文件路径，不然找不到抱错
+configuration:
+log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

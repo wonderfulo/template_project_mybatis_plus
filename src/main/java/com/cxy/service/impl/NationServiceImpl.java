@@ -1,11 +1,12 @@
 package com.cxy.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cxy.entity.Nation;
 import com.cxy.mapper.NationMapper;
 import com.cxy.service.INationService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.apache.poi.ss.formula.functions.Na;
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.stereotype.Service;
 
@@ -27,11 +28,25 @@ public class NationServiceImpl extends ServiceImpl<NationMapper, Nation> impleme
      * @param id 主键ID
      */
     @Override
-    public Nation getExistById(Serializable id) {
+    public Nation getByIdAndIsDelete(Serializable id) {
         QueryWrapper<Nation> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("nation_id", id);
         queryWrapper.eq("is_delete", 0);
         baseMapper.selectOne(queryWrapper);
         return baseMapper.selectOne(queryWrapper);
+    }
+
+    @Override
+    public IPage<Nation> getList(Nation nation, Page<Nation> page) {
+
+        QueryWrapper<Nation> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("is_delete", 0);
+
+        //第一种
+        IPage<Nation> iPage = baseMapper.selectPage(page, queryWrapper);
+        System.out.println("总页数:"+iPage.getPages());
+        System.out.println("总记录数:"+iPage.getTotal());
+
+        return iPage;
     }
 }

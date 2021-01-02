@@ -3,22 +3,18 @@ package com.cxy.controller;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cxy.common.JsonResponse;
 import com.cxy.entity.Nation;
 import com.cxy.entity.SysUser;
-import com.cxy.entity.User;
 import com.cxy.service.INationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.poi.ss.formula.functions.Na;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
-import javax.websocket.server.PathParam;
-import java.util.List;
 
 /**
  * <p>
@@ -35,13 +31,13 @@ import java.util.List;
 public class NationController {
 
     @Autowired
-    private INationService iNationService;
+    private INationService nationService;
 
     @PostMapping("")
     @ApiOperation("添加民族")
     @Transactional
-    public JsonResponse<Nation> add(@RequestParam(value = "accessToken",required = true) String accessToken, Nation nation) {
-        if (StringUtils.isEmpty(nation.getNationName())){
+    public JsonResponse<Nation> add(@RequestParam(value = "accessToken", required = true) String accessToken, Nation nation) {
+        if (StringUtils.isEmpty(nation.getNationName())) {
             return JsonResponse.fail("nationName: 必要参数");
         }
 
@@ -49,10 +45,10 @@ public class NationController {
         sysUser.setSysUserId(123L);
         nation.addBuild(sysUser);
 
-        boolean save = iNationService.save(nation);
-        if (save){
+        boolean save = nationService.save(nation);
+        if (save) {
             return JsonResponse.success(nation);
-        }else{
+        } else {
             return JsonResponse.fail("添加失败");
         }
     }
@@ -61,8 +57,8 @@ public class NationController {
     @DeleteMapping("/{nationId}")
     @ApiOperation("删除民族")
     @Transactional
-    public JsonResponse<String> delete(@RequestParam(value = "accessToken",required = true) String accessToken, @PathVariable("nationId") Long nationId) {
-        if (nationId == null){
+    public JsonResponse<String> delete(@RequestParam(value = "accessToken", required = true) String accessToken, @PathVariable("nationId") Long nationId) {
+        if (nationId == null) {
             return JsonResponse.fail("nationId: 必要参数");
         }
 
@@ -73,12 +69,12 @@ public class NationController {
         nation.setNationId(nationId);
         nation.delBuild(sysUser);
 
-        boolean update = iNationService.updateById(nation);
+        boolean update = nationService.updateById(nation);
 
-        if (update){
+        if (update) {
             //不返回当前对象，因为当前更新对象为差量更新（属性并不全面），先查询在返回太浪费性能
             return JsonResponse.success("删除成功");
-        }else{
+        } else {
             return JsonResponse.fail("删除失败");
         }
     }
@@ -86,30 +82,30 @@ public class NationController {
     @PutMapping("")
     @ApiOperation("修改民族")
     @Transactional
-    public JsonResponse<String> update(@RequestParam(value = "accessToken",required = true) String accessToken, Nation nation) {
-        if (nation.getNationId() == null){
-                return JsonResponse.fail("nationId: 必要参数");
+    public JsonResponse<String> update(@RequestParam(value = "accessToken", required = true) String accessToken, Nation nation) {
+        if (nation.getNationId() == null) {
+            return JsonResponse.fail("nationId: 必要参数");
         }
         //由于不允许更新已删除的数据，故要先进行查询
-        Nation oldNation = iNationService.getExistById(nation.getNationId());
+        Nation oldNation = nationService.getByIdAndIsDelete(nation.getNationId());
 
-        if(oldNation == null){
+        if (oldNation == null) {
             return JsonResponse.fail("待更新数据不存在");
         }
 
-        BeanUtil.copyProperties(nation,oldNation, CopyOptions.create().setIgnoreNullValue(true));
+        BeanUtil.copyProperties(nation, oldNation, CopyOptions.create().setIgnoreNullValue(true));
 
         SysUser sysUser = new SysUser();
         sysUser.setSysUserId(888L);
 
         oldNation.updateBuild(sysUser);
 
-        boolean update = iNationService.updateById(oldNation);
+        boolean update = nationService.updateById(oldNation);
 
-        if (update){
+        if (update) {
             //不返回当前对象，因为当前更新对象为差量更新（属性并不全面），先查询在返回太浪费性能
             return JsonResponse.success("更新成功");
-        }else{
+        } else {
             return JsonResponse.fail("更新失败");
         }
     }
@@ -122,11 +118,27 @@ public class NationController {
             httpMethod = "GET",
             response = Nation.class,
             responseContainer = "Object")
-    public JsonResponse<Nation> get(@RequestParam(value = "accessToken",required = true) String accessToken, @PathVariable("nationId") Long nationId) {
-        if (nationId == null){
+    public JsonResponse<Nation> get(@RequestParam(value = "accessToken", required = true) String accessToken, @PathVariable("nationId") Long nationId) {
+        if (nationId == null) {
             return JsonResponse.fail("nationId: 必要参数");
         }
-        Nation nation = iNationService.getExistById(nationId);
+        Nation nation = nationService.getByIdAndIsDelete(nationId);
         return JsonResponse.success(nation);
+    }
+
+    @GetMapping("/list")
+    @ApiOperation(
+            value = "获取民族对象列表",
+            notes = "参数查询，分页获取",
+            httpMethod = "GET",
+            response = Nation.class,
+            responseContainer = "Object")
+    public JsonResponse<IPage<Nation>> list(@RequestParam(value = "accessToken", required = true) String accessToken, Nation nation, Page<Nation> page) {
+        if (page.getCurrent() < 1) {
+            page.setCurrent(1);
+        }
+
+        IPage<Nation> list = nationService.getList(nation, page);
+        return JsonResponse.success(list);
     }
 }
