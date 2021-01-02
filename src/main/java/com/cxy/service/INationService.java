@@ -29,4 +29,10 @@ public interface INationService extends IService<Nation> {
      */
     IPage<Nation> getList(Nation nation , Page<Nation> page);
 
+    /**
+     * 测试自定义缓存注解
+     * 参数查询，分页获取
+     */
+    Nation get(Serializable id);
+
 }

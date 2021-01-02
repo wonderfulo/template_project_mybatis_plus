@@ -141,4 +141,20 @@ public class NationController {
         IPage<Nation> list = nationService.getList(nation, page);
         return JsonResponse.success(list);
     }
+
+
+    @GetMapping("/myCache/{nationId}")
+    @ApiOperation(
+            value = "获取民族对象",
+            notes = "未被删除的",
+            httpMethod = "GET",
+            response = Nation.class,
+            responseContainer = "Object")
+    public JsonResponse<Nation> getOnMyCache(@RequestParam(value = "accessToken", required = true) String accessToken, @PathVariable("nationId") Long nationId) {
+        if (nationId == null) {
+            return JsonResponse.fail("nationId: 必要参数");
+        }
+        Nation nation = nationService.get(nationId);
+        return JsonResponse.success(nation);
+    }
 }

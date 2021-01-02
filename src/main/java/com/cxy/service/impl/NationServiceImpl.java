@@ -4,10 +4,10 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.cxy.annonation.MyCache;
 import com.cxy.entity.Nation;
 import com.cxy.mapper.NationMapper;
 import com.cxy.service.INationService;
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
@@ -25,6 +25,7 @@ public class NationServiceImpl extends ServiceImpl<NationMapper, Nation> impleme
 
     /**
      * 根据 ID 查询 未被删除的对象
+     *
      * @param id 主键ID
      */
     @Override
@@ -32,7 +33,6 @@ public class NationServiceImpl extends ServiceImpl<NationMapper, Nation> impleme
         QueryWrapper<Nation> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("nation_id", id);
         queryWrapper.eq("is_delete", 0);
-        baseMapper.selectOne(queryWrapper);
         return baseMapper.selectOne(queryWrapper);
     }
 
@@ -44,9 +44,19 @@ public class NationServiceImpl extends ServiceImpl<NationMapper, Nation> impleme
 
         //第一种
         IPage<Nation> iPage = baseMapper.selectPage(page, queryWrapper);
-        System.out.println("总页数:"+iPage.getPages());
-        System.out.println("总记录数:"+iPage.getTotal());
+        System.out.println("总页数:" + iPage.getPages());
+        System.out.println("总记录数:" + iPage.getTotal());
 
         return iPage;
+    }
+
+    @Override
+    @MyCache(key = "nation:get:id")
+    public Nation get(Serializable id) {
+        QueryWrapper<Nation> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("nation_id", id);
+        queryWrapper.eq("is_delete", 0);
+        Nation nation = baseMapper.selectOne(queryWrapper);
+        return nation;
     }
 }
