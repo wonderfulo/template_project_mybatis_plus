@@ -8,6 +8,10 @@ import org.springframework.context.annotation.Configuration;
 
 
 //Spring boot方式
+
+/**
+ * 用于显示执行的sql，在生产环境下建议关闭此功能
+ */
 @Configuration
 @MapperScan("com.baomidou.cloud.service.*.mapper*")
 public class MybatisPlusConfig {

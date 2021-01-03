@@ -34,7 +34,7 @@
             <artifactId>mybatis-plus-boot-starter</artifactId>
             <version>3.4.0</version>
         </dependency>
-        <!-- mybatis-plus打印sql, 并且分析性能 -->
+        <!-- mybatis-plus打印sql, 并且分析性能，在生产环境下建议关闭此功能 -->
         <dependency>
             <groupId>p6spy</groupId>
             <artifactId>p6spy</artifactId>
