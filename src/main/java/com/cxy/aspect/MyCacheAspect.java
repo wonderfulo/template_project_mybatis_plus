@@ -55,6 +55,8 @@ public class MyCacheAspect {
         Object[] args = joinPoint.getArgs();
         String key = myCache.key();
 
+        logger.debug("正在执行自定义注解的切面方法");
+
         Object o = redisTemplate.opsForValue().get(key);
         if (o != null){
             return o;

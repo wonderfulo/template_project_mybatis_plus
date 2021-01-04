@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false">
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+        </encoder>
+    </appender>
+
+
+    <logger name="ch.qos.logback" level="OFF" />
+
+    <logger name="org.springframework" level="info" />
+    <logger name="org.springframework.web" level="info" />
+    <logger name="org.springframework.beans" level="info" />
+    <logger name="org.springframework.jdbc.core" level="info" />
+
+    <logger name="com.cxy" level="DEBUG" />
+    <logger name="org.jboss" level="ERROR" />
+    <logger name="org.hibernate" level="ERROR" />
+    <logger name="org.hibernate.sql" level="ERROR" />
+    <logger name="org.hibernate.stat" level="ERROR" />
+    <logger name="org.hibernate.type.descriptor.sql" level="ERROR" />
+
+    <logger name="org.eclipse.jetty.annotations" level="info" />
+    <logger name="org.eclipse.jetty.http2" level="info" />
+    <logger name="ch.qos.logback" level="warn" />
+
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>

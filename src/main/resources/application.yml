@@ -9,7 +9,9 @@ spring:
   application:
     name: template_project
   profiles:
-    include: datasource,mybatis,log,thymeleaf,file,redis
+    include: datasource,mybatis,thymeleaf,file,redis
+    # 选择加载不同环境的配置文件 dev pre prod
+    active: dev
 
 #logging:
 #  level:

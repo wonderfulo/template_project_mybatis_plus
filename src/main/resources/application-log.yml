@@ -1,3 +1,14 @@
 #日志的默认级别为debug
 #logging:
 #  level: debug
+
+logging:
+#添加下面这段配置，回收p6spy 显示正在执行的sql失效
+#  level:
+#    root: "warn"
+#    org.springframework.web: "debug"
+#    org.hibernate: "error"
+  # 仅仅只会在项目根路径下产生test.log文件，不会在指定路径下产生日志文件(期望日志路径为：logging.path + logging.file)。
+  # 原因：Spring Boot中的logging.path和logging.file这2个属性，只需要配置其中之一即可，如果同时配置，则使用logging.file属性。
+  file:
+    name: D:\logs\all.log  # 日志文件,绝对路径或相对路径
