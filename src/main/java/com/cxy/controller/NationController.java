@@ -8,13 +8,18 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cxy.common.JsonResponse;
 import com.cxy.entity.Nation;
 import com.cxy.entity.SysUser;
+import com.cxy.entity.User;
 import com.cxy.service.INationService;
+import com.cxy.utils.request.RequestUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -77,6 +82,41 @@ public class NationController {
         } else {
             return JsonResponse.fail("删除失败");
         }
+    }
+
+    /**
+     * 用户测试使用map，接收json数据
+     * 也可以使用 list<对象> xx， 接收json对象数组
+     * @param accessToken
+     * @param map
+     * @return
+     */
+    @PostMapping("/deleteBatch")
+    @ApiOperation("删除民族")
+    @Transactional
+    public JsonResponse<String> deleteBatch(@RequestParam(value = "accessToken", required = true) String accessToken, @RequestBody Map map) {
+
+//        if (nationId == null) {
+//            return JsonResponse.fail("nationId: 必要参数");
+//        }
+//
+//        SysUser sysUser = new SysUser();
+//        sysUser.setSysUserId(456L);
+//
+//        Nation nation = new Nation();
+//        nation.setNationId(nationId);
+//        nation.delBuild(sysUser);
+//
+//        boolean update = nationService.updateById(nation);
+//
+//        if (update) {
+//            //不返回当前对象，因为当前更新对象为差量更新（属性并不全面），先查询在返回太浪费性能
+//            return JsonResponse.success("删除成功");
+//        } else {
+//            return JsonResponse.fail("删除失败");
+//        }
+
+        return null;
     }
 
     @PutMapping("")
