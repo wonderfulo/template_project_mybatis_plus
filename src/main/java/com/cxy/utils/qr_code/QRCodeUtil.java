@@ -179,7 +179,7 @@ public class QRCodeUtil {
     }
 
   //生成对应的二维码
-	public static String createQR(String cdkey) throws Exception{
+	public static String createQr(String cdkey) throws Exception{
 		BufferedImage image = createImage(cdkey, null, false);
 		InputStream in = null;
 		ByteArrayOutputStream bs = new ByteArrayOutputStream();
@@ -192,7 +192,7 @@ public class QRCodeUtil {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		String fileName = "qr"+new Date().getTime()+".jpg";
+		String fileName = "qr"+System.currentTimeMillis()+".jpg";
 //		QiNiuUtil.upload(in, fileName);
 		return fileName;
 	}
