@@ -3,8 +3,8 @@ package com.cxy.entity.excel_listener;
 import com.alibaba.excel.context.AnalysisContext;
 import com.alibaba.excel.event.AnalysisEventListener;
 import com.alibaba.fastjson.JSON;
-import com.cxy.entity.Nation;
-import com.cxy.service.INationService;
+import com.cxy.entity.TmNation;
+import com.cxy.service.ITmNationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,13 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 // 有个很重要的点 DemoDataListener 不能被spring管理，要每次读取excel都要new,然后里面用到spring可以构造方法传进去
-public class NationListener extends AnalysisEventListener<Nation> {
+public class NationListener extends AnalysisEventListener<TmNation> {
     private static final Logger LOGGER = LoggerFactory.getLogger(NationListener.class);
     /**
      * 每隔5条存储数据库，实际使用中可以3000条，然后清理list ，方便内存回收
      */
     private static final int BATCH_COUNT = 5;
-    List<Nation> list = new ArrayList<Nation>();
+    List<TmNation> list = new ArrayList<TmNation>();
 
     /**
      * 假设这个是一个DAO，当然有业务逻辑这个也可以是一个service。当然如果不用存储这个对象没用。
@@ -29,9 +29,9 @@ public class NationListener extends AnalysisEventListener<Nation> {
 //        demoDAO = new DemoDAO();
     }
 
-    private INationService nationService;
+    private ITmNationService nationService;
 
-    public NationListener(INationService nationService) {
+    public NationListener(ITmNationService nationService) {
         // 这里是demo，所以随便new一个。实际使用如果到了spring,请使用下面的有参构造函数
         this.nationService = nationService;
     }
@@ -51,7 +51,7 @@ public class NationListener extends AnalysisEventListener<Nation> {
      * @param context
      */
     @Override
-    public void invoke(Nation data, AnalysisContext context) {
+    public void invoke(TmNation data, AnalysisContext context) {
         LOGGER.info("解析到一条数据:{}", JSON.toJSONString(data));
         list.add(data);
         // 达到BATCH_COUNT了，需要去存储一次数据库，防止数据几万条数据在内存，容易OOM

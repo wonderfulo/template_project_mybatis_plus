@@ -5,9 +5,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.cxy.annonation.MyCache;
-import com.cxy.entity.Nation;
-import com.cxy.mapper.NationMapper;
-import com.cxy.service.INationService;
+import com.cxy.entity.TmNation;
+import com.cxy.mapper.TmNationMapper;
+import com.cxy.service.ITmNationService;
 import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
@@ -21,7 +21,7 @@ import java.io.Serializable;
  * @since 2020-12-10
  */
 @Service
-public class NationServiceImpl extends ServiceImpl<NationMapper, Nation> implements INationService {
+public class TmNationServiceImpl extends ServiceImpl<TmNationMapper, TmNation> implements ITmNationService {
 
     /**
      * 根据 ID 查询 未被删除的对象
@@ -29,21 +29,21 @@ public class NationServiceImpl extends ServiceImpl<NationMapper, Nation> impleme
      * @param id 主键ID
      */
     @Override
-    public Nation getByIdAndIsDelete(Serializable id) {
-        QueryWrapper<Nation> queryWrapper = new QueryWrapper<>();
+    public TmNation getByIdAndIsDelete(Serializable id) {
+        QueryWrapper<TmNation> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("nation_id", id);
         queryWrapper.eq("is_delete", 0);
         return baseMapper.selectOne(queryWrapper);
     }
 
     @Override
-    public IPage<Nation> getList(Nation nation, Page<Nation> page) {
+    public IPage<TmNation> getList(TmNation tmNation, Page<TmNation> page) {
 
-        QueryWrapper<Nation> queryWrapper = new QueryWrapper<>();
+        QueryWrapper<TmNation> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("is_delete", 0);
 
         //第一种
-        IPage<Nation> iPage = baseMapper.selectPage(page, queryWrapper);
+        IPage<TmNation> iPage = baseMapper.selectPage(page, queryWrapper);
         System.out.println("总页数:" + iPage.getPages());
         System.out.println("总记录数:" + iPage.getTotal());
 
@@ -52,11 +52,11 @@ public class NationServiceImpl extends ServiceImpl<NationMapper, Nation> impleme
 
     @Override
     @MyCache(key = "nation:get:id")
-    public Nation get(Serializable id) {
-        QueryWrapper<Nation> queryWrapper = new QueryWrapper<>();
+    public TmNation get(Serializable id) {
+        QueryWrapper<TmNation> queryWrapper = new QueryWrapper<>();
         queryWrapper.eq("nation_id", id);
         queryWrapper.eq("is_delete", 0);
-        Nation nation = baseMapper.selectOne(queryWrapper);
-        return nation;
+        TmNation tmNation = baseMapper.selectOne(queryWrapper);
+        return tmNation;
     }
 }

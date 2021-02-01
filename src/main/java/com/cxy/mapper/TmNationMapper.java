@@ -1,6 +1,6 @@
 package com.cxy.mapper;
 
-import com.cxy.entity.Nation;
+import com.cxy.entity.TmNation;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author 陈翔宇
  * @since 2020-12-10
  */
-public interface NationMapper extends BaseMapper<Nation> {
+public interface TmNationMapper extends BaseMapper<TmNation> {
 
 }

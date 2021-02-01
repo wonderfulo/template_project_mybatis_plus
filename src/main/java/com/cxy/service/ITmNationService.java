@@ -3,7 +3,7 @@ package com.cxy.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.cxy.entity.Nation;
+import com.cxy.entity.TmNation;
 
 import java.io.Serializable;
 
@@ -15,24 +15,24 @@ import java.io.Serializable;
  * @author 陈翔宇
  * @since 2020-12-10
  */
-public interface INationService extends IService<Nation> {
+public interface ITmNationService extends IService<TmNation> {
 
     /**
      * 根据 ID 查询 未被删除的对象
      * @param id 主键ID
      */
-    Nation getByIdAndIsDelete(Serializable id);
+    TmNation getByIdAndIsDelete(Serializable id);
 
     /**
      * 根据 ID 查询 未被删除的对象
      * 参数查询，分页获取
      */
-    IPage<Nation> getList(Nation nation , Page<Nation> page);
+    IPage<TmNation> getList(TmNation tmNation, Page<TmNation> page);
 
     /**
      * 测试自定义缓存注解
      * 参数查询，分页获取
      */
-    Nation get(Serializable id);
+    TmNation get(Serializable id);
 
 }

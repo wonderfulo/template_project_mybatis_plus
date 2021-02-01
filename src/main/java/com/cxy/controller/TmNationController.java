@@ -6,11 +6,9 @@ import cn.hutool.core.bean.copier.CopyOptions;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cxy.common.JsonResponse;
-import com.cxy.entity.Nation;
+import com.cxy.entity.TmNation;
 import com.cxy.entity.SysUser;
-import com.cxy.entity.User;
-import com.cxy.service.INationService;
-import com.cxy.utils.request.RequestUtil;
+import com.cxy.service.ITmNationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
@@ -18,7 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -31,28 +28,28 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/nation")
-@Api(value = "民族API接口",
+@Api(value = "nationAPI",
         description = "民族API接口")
-public class NationController {
+public class TmNationController {
 
     @Autowired
-    private INationService nationService;
+    private ITmNationService nationService;
 
     @PostMapping("")
     @ApiOperation("添加民族")
     @Transactional
-    public JsonResponse<Nation> add(@RequestParam(value = "accessToken", required = true) String accessToken, Nation nation) {
-        if (StringUtils.isEmpty(nation.getNationName())) {
+    public JsonResponse<TmNation> add(@RequestParam(value = "accessToken", required = true) String accessToken, TmNation tmNation) {
+        if (StringUtils.isEmpty(tmNation.getNationName())) {
             return JsonResponse.fail("nationName: 必要参数");
         }
 
         SysUser sysUser = new SysUser();
         sysUser.setSysUserId(123L);
-        nation.addBuild(sysUser);
+        tmNation.addBuild(sysUser);
 
-        boolean save = nationService.save(nation);
+        boolean save = nationService.save(tmNation);
         if (save) {
-            return JsonResponse.success(nation);
+            return JsonResponse.success(tmNation);
         } else {
             return JsonResponse.fail("添加失败");
         }
@@ -70,11 +67,11 @@ public class NationController {
         SysUser sysUser = new SysUser();
         sysUser.setSysUserId(456L);
 
-        Nation nation = new Nation();
-        nation.setNationId(nationId);
-        nation.delBuild(sysUser);
+        TmNation tmNation = new TmNation();
+        tmNation.setNationId(nationId);
+        tmNation.delBuild(sysUser);
 
-        boolean update = nationService.updateById(nation);
+        boolean update = nationService.updateById(tmNation);
 
         if (update) {
             //不返回当前对象，因为当前更新对象为差量更新（属性并不全面），先查询在返回太浪费性能
@@ -122,25 +119,25 @@ public class NationController {
     @PutMapping("")
     @ApiOperation("修改民族")
     @Transactional
-    public JsonResponse<String> update(@RequestParam(value = "accessToken", required = true) String accessToken, Nation nation) {
-        if (nation.getNationId() == null) {
+    public JsonResponse<String> update(@RequestParam(value = "accessToken", required = true) String accessToken, TmNation tmNation) {
+        if (tmNation.getNationId() == null) {
             return JsonResponse.fail("nationId: 必要参数");
         }
         //由于不允许更新已删除的数据，故要先进行查询
-        Nation oldNation = nationService.getByIdAndIsDelete(nation.getNationId());
+        TmNation oldTmNation = nationService.getByIdAndIsDelete(tmNation.getNationId());
 
-        if (oldNation == null) {
+        if (oldTmNation == null) {
             return JsonResponse.fail("待更新数据不存在");
         }
 
-        BeanUtil.copyProperties(nation, oldNation, CopyOptions.create().setIgnoreNullValue(true));
+        BeanUtil.copyProperties(tmNation, oldTmNation, CopyOptions.create().setIgnoreNullValue(true));
 
         SysUser sysUser = new SysUser();
         sysUser.setSysUserId(888L);
 
-        oldNation.updateBuild(sysUser);
+        oldTmNation.updateBuild(sysUser);
 
-        boolean update = nationService.updateById(oldNation);
+        boolean update = nationService.updateById(oldTmNation);
 
         if (update) {
             //不返回当前对象，因为当前更新对象为差量更新（属性并不全面），先查询在返回太浪费性能
@@ -156,14 +153,14 @@ public class NationController {
             value = "获取民族对象",
             notes = "未被删除的",
             httpMethod = "GET",
-            response = Nation.class,
+            response = TmNation.class,
             responseContainer = "Object")
-    public JsonResponse<Nation> get(@RequestParam(value = "accessToken", required = true) String accessToken, @PathVariable("nationId") Long nationId) {
+    public JsonResponse<TmNation> get(@RequestParam(value = "accessToken", required = true) String accessToken, @PathVariable("nationId") Long nationId) {
         if (nationId == null) {
             return JsonResponse.fail("nationId: 必要参数");
         }
-        Nation nation = nationService.getByIdAndIsDelete(nationId);
-        return JsonResponse.success(nation);
+        TmNation tmNation = nationService.getByIdAndIsDelete(nationId);
+        return JsonResponse.success(tmNation);
     }
 
     @GetMapping("/list")
@@ -171,14 +168,14 @@ public class NationController {
             value = "获取民族对象列表",
             notes = "参数查询，分页获取",
             httpMethod = "GET",
-            response = Nation.class,
+            response = TmNation.class,
             responseContainer = "Object")
-    public JsonResponse<IPage<Nation>> list(@RequestParam(value = "accessToken", required = true) String accessToken, Nation nation, Page<Nation> page) {
+    public JsonResponse<IPage<TmNation>> list(@RequestParam(value = "accessToken", required = true) String accessToken, TmNation tmNation, Page<TmNation> page) {
         if (page.getCurrent() < 1) {
             page.setCurrent(1);
         }
 
-        IPage<Nation> list = nationService.getList(nation, page);
+        IPage<TmNation> list = nationService.getList(tmNation, page);
         return JsonResponse.success(list);
     }
 
@@ -188,13 +185,13 @@ public class NationController {
             value = "获取民族对象",
             notes = "未被删除的",
             httpMethod = "GET",
-            response = Nation.class,
+            response = TmNation.class,
             responseContainer = "Object")
-    public JsonResponse<Nation> getOnMyCache(@RequestParam(value = "accessToken", required = true) String accessToken, @PathVariable("nationId") Long nationId) {
+    public JsonResponse<TmNation> getOnMyCache(@RequestParam(value = "accessToken", required = true) String accessToken, @PathVariable("nationId") Long nationId) {
         if (nationId == null) {
             return JsonResponse.fail("nationId: 必要参数");
         }
-        Nation nation = nationService.get(nationId);
-        return JsonResponse.success(nation);
+        TmNation tmNation = nationService.get(nationId);
+        return JsonResponse.success(tmNation);
     }
 }

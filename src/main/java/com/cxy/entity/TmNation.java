@@ -25,8 +25,8 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 // chain的中文含义是链式的，设置为true，则setter方法返回当前对象
 //@Accessors(chain = true), 该注解会导致 ali的 easyExcel文件解析失败
-@ApiModel(value="民族类",description="民族实体类" )
-public class Nation extends BaseEntity {
+@ApiModel(value="tm_nation",description="民族实体类" )
+public class TmNation extends BaseEntity {
 
 //    private static final long serialVersionUID = 1L;
 
