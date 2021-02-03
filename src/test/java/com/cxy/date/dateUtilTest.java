@@ -18,6 +18,6 @@ public class dateUtilTest {
         long appraiseId = DateUtil.getNowUtilDate().getTime();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String format = dateFormat.format(appraiseId);
-        System.out.println("");
+        System.out.println(format);
     }
 }

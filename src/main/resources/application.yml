@@ -12,10 +12,19 @@ spring:
     include: datasource,mybatis,thymeleaf,file,redis
     # 选择加载不同环境的配置文件 dev pre prod
     active: dev
+  #mongodb配置
+  data:
+    mongodb:
+#      uri: mongodb://127.0.0.1:27017/mytest
+      host: localhost
+      port: 27017
+      database: mytest
+      username: cxy
+      password: cxy
+      authentication-database: mytest
 
-#logging:
-#  level:
-#    org.springframework.boot:
-#      debug
+
+#mongodb配置
+#  spring.data.mongodb.uri=mongodb://192.168.111.132:27017/congge
 
 

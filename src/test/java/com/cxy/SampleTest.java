@@ -2,6 +2,7 @@ package com.cxy;
 
 import com.cxy.entity.User;
 import com.cxy.mapper.UserMapper;
+import com.cxy.service.mongodb.MongoDbSeniorService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-//@RunWith(SpringRunner.class)
+//该注解会启动springboot项目
+@RunWith(SpringRunner.class)
+//只有该注解 不会启动springboot项目
 @SpringBootTest
 public class SampleTest {
 
@@ -23,6 +26,16 @@ public class SampleTest {
 
     @Autowired
     private ServletContext servletContext;
+
+    @Autowired
+    private MongoDbSeniorService mongoDbSeniorService;
+
+
+    @Test
+    public void mongoDbTest() {
+//        mongoDbSeniorService.insert();
+        mongoDbSeniorService.insertMany();
+    }
 
     @Test
     public void testSelect() {
