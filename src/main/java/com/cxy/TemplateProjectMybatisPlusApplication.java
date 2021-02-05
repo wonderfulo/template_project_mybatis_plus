@@ -41,4 +41,5 @@ public class TemplateProjectMybatisPlusApplication {
         redisTemplate.setHashKeySerializer(stringSerializer);
     }
 
+
 }
