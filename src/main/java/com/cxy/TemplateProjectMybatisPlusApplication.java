@@ -44,7 +44,7 @@ public class TemplateProjectMybatisPlusApplication {
 
     //设置redis的序列化器
     private void test() {
-        System.out.println("回滚测试2");
+        System.out.println("回滚测试3");
     }
 
 }
