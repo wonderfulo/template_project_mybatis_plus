@@ -41,9 +41,5 @@ public class TemplateProjectMybatisPlusApplication {
         redisTemplate.setHashKeySerializer(stringSerializer);
     }
 
-    //设置redis的序列化器
-    private void test() {
-        System.out.println("再次提交测试");
-    }
 
 }
