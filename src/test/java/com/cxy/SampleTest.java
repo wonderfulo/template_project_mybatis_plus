@@ -12,11 +12,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.servlet.ServletContext;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 //该注解会启动springboot项目
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 //只有该注解 不会启动springboot项目
 @SpringBootTest
 public class SampleTest {
@@ -43,6 +45,52 @@ public class SampleTest {
         List<User> userList = userMapper.selectList(null);
         Assert.assertEquals(5, userList.size());
         userList.forEach(System.out::println);
+    }
+
+
+    @Test
+    public void listTest() {
+        ArrayList<String> strings = new ArrayList<>();
+        ArrayList<String> strings2 = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            strings.add(i + "");
+        }
+
+        for (int i = 6; i <= 15; i++) {
+            strings2.add(i + "");
+        }
+
+        //取交集
+//        strings.retainAll(strings2);
+
+        //集合相加，不去重
+//        strings.addAll(strings2);
+
+        //方法一：去交集,集合相加, 相当于两集相加去重
+//        strings.removeAll(strings2);
+//        strings.addAll(strings2);
+
+        //方法二, 使用了 treeSet 的集合不能有重复值，做去重操作，有点low
+        strings.addAll(strings2);
+        ArrayList<String> collect = strings.stream().collect(Collectors.collectingAndThen(
+                Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(x -> x))), ArrayList::new)
+        );
+
+        ArrayList<String> collect1 = strings.stream().collect(Collectors.collectingAndThen(
+                Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(x -> x))), ArrayList::new)
+        );
+
+
+        TreeSet<String> strings3 = new TreeSet<>();
+        for (int i = 1; i <= 10; i++) {
+            strings3.add(i + "");
+        }
+
+        for (int i = 6; i <= 15; i++) {
+            strings3.add(i + "");
+        }
+
+        System.out.println("666");
     }
 
 
