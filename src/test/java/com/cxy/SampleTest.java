@@ -33,6 +33,27 @@ public class SampleTest {
     private MongoDbSeniorService mongoDbSeniorService;
 
 
+    /**
+     * 正则表达式去html
+     */
+    @Test
+    public void regexTest() {
+        String str = "<span id=\"_calculateTextWidth\" style=\"visibility: hidden; font-size: 16px; display: inline-block; position: absolute; left: -100%; top: -100%;\">离线留言</span>";
+        str += " 123</br>";
+        String s = str.replaceAll("<[^>]+>", "");
+        System.out.println(s);
+    }
+    /**
+     * 正则表达式去空格
+     */
+    @Test
+    public void regexTheBlankSpace() {
+        String str = " 12 3 ";
+        String s = str.replaceAll("\\s*|\\t|\\r|\\n", "");
+        System.out.println(s);
+    }
+
+
     @Test
     public void mongoDbTest() {
 //        mongoDbSeniorService.insert();
@@ -67,6 +88,7 @@ public class SampleTest {
 //        strings.addAll(strings2);
 
         //方法一：去交集,集合相加, 相当于两集相加去重
+        // 对于字符串有用，对于对象无用
 //        strings.removeAll(strings2);
 //        strings.addAll(strings2);
 
