@@ -37,6 +37,20 @@ public class SampleTest {
      * 正则表达式去html
      */
     @Test
+    public void strListTest() {
+        List<String> strings = new ArrayList<>();
+        for (int i = 1; i <= 10; i++) {
+            strings.add((Math.ceil(i / 2)) + "");
+        }
+
+        List<String> listResult = strings.stream().distinct().collect(Collectors.toList());
+        System.out.println(listResult);
+    }
+
+    /**
+     * 正则表达式去html
+     */
+    @Test
     public void regexTest() {
         String str = "<span id=\"_calculateTextWidth\" style=\"visibility: hidden; font-size: 16px; display: inline-block; position: absolute; left: -100%; top: -100%;\">离线留言</span>";
         str += " 123</br>";
