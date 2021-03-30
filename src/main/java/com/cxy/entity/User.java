@@ -51,4 +51,10 @@ public class User implements Serializable {
     private String email;
 
 
+    /**
+     * 邮箱
+     */
+    private Boolean isDelete;
+
+
 }
