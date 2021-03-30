@@ -3,10 +3,13 @@ package com.cxy.controller.cjdgexcel;
 import com.cxy.entity.User;
 import com.cxy.utils.excel2.*;
 import io.swagger.annotations.Api;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
+import java.lang.reflect.Field;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 
@@ -50,6 +53,48 @@ public class Excel2Test {
                 ExportExcelCellType.RICH_TEXT_STRING
         };
         FieldControlObject[] fieldControlObjects = new FieldControlObject[fieldNames.length];
+
+//        for (int i = 0; i < length; i++) {
+//            FieldControlObject fieldControlObject = new FieldControlObject(fieldNames[i], fieldTypes[i]);
+//            if (i > 19 ) {
+//                fieldControlObject.setIndex(i - 19);
+//            }
+//            if(i == 10 ){
+//                fieldControlObject.setFormatterOfBean(new FormatterOfBean() {
+//                    @Override
+//                    public <T> String format(Object value, Field[] fields, T t) {
+//                        Field score = ExportExcelUtils.getFieldByName(fields, "score");
+//                        Field sourceScore = ExportExcelUtils.getFieldByName(fields, "sourceScore");
+//                        String  r= "0.00%";
+//                        try {
+//                            if(score != null && sourceScore != null){
+//                                String score1 = (String) score.get(t);
+//                                String sourceScore2 = (String) sourceScore.get(t);
+//                                DecimalFormat df = new DecimalFormat("0.00%");
+//                                if (StringUtils.isNotEmpty(sourceScore2)){
+//                                    r = df.format(Float.parseFloat(score1)/Float.parseFloat(sourceScore2));
+//                                }
+//                            }
+//                        } catch (IllegalAccessException e) {
+//                            throw new RatelRuntimeException("计算得分率失败");
+//                        }
+//                        return r;
+//                    }
+//                });
+//
+//            }
+//            //处理接受者
+//            if(i == 15 ){
+//                fieldControlObject.setFormatterOfBean(new FormatterOfBean() {
+//                    @Override
+//                    public <T> String format(Object value, Field[] fields, T t) {
+//                        return (String) groupUser.getOrDefault((String)value,(String)value);
+//                    }
+//                });
+//
+//            }
+//            fieldControlObjects[i] = fieldControlObject;
+//        }
 
         for (int i = 0; i < fieldNames.length; i++) {
             FieldControlObject fieldControlObject = new FieldControlObject(fieldNames[i], fieldTypes[i]);
