@@ -1,8 +1,8 @@
 package com.cxy.entity;
 
-import com.alibaba.excel.annotation.ExcelIgnore;
-import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
-import com.alibaba.excel.annotation.ExcelProperty;
+//import com.alibaba.excel.annotation.ExcelIgnore;
+//import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
+//import com.alibaba.excel.annotation.ExcelProperty;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
@@ -31,10 +31,10 @@ public class TmNation extends BaseEntity {
 //    private static final long serialVersionUID = 1L;
 
     @TableId(value = "nation_id", type = IdType.AUTO)
-    @ExcelIgnore
+//    @ExcelIgnore
     private Long nationId;
 
-    @ExcelProperty("民族")
+//    @ExcelProperty("民族")
     private String nationName;
 
 }
