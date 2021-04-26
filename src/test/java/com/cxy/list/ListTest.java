@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 //@RunWith(SpringRunner.class)
 //只有该注解 不会启动springboot项目
 @SpringBootTest
-public class ListTest {
+public class ListTest{
 
     @Test
     public void listTest() {
@@ -67,6 +67,10 @@ public class ListTest {
         }
 
         System.out.println("666");
+    }
+
+    public static <Ex extends Object> void get(Ex ex){
+
     }
 
 
