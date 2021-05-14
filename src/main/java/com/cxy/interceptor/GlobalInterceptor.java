@@ -1,5 +1,7 @@
 package com.cxy.interceptor;
 
+import com.cxy.assert_package.AssertEx;
+import com.cxy.constant.exception.MyEnumException;
 import com.cxy.exception.MyException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.lang.Nullable;
@@ -20,11 +22,8 @@ public class GlobalInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
-//        System.out.println("处理器前方法");
-//        String accessToken = request.getParameter("accessToken");
-//        if (StringUtils.isEmpty(accessToken)){
-//            throw new MyException("accessToken不能为空");
-//        }
+        System.out.println("处理器前方法");
+        AssertEx.isNotEmpty(request.getParameter("accessToken"), MyEnumException.ACCESS_TOKEN_NO_EXIST);
         return true;
     }
 
