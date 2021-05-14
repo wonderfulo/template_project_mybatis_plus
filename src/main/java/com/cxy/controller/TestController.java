@@ -6,6 +6,7 @@ import com.cxy.assert_package.AssertEx;
 import com.cxy.common.JsonResponse;
 import com.cxy.constant.exception.DisplayTaskEnumException;
 import com.cxy.entity.User;
+import com.cxy2.ChenXiangYu;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,6 +55,11 @@ public class TestController {
         AssertEx.isNotEmpty(0L, DisplayTaskEnumException.ID_NOT_EXIST);
         return "success";
     }
+
+    /**
+     * hutool:远程调用测试
+     * @return
+     */
     @RequestMapping("/httpGet")
     public String httpGet(){
         String content = HttpUtil.get("http://localhost:8091/template/test/hello?accessToken=123");
@@ -71,6 +77,18 @@ public class TestController {
         JsonResponse jsonResponse = JSON.parseObject(result1, JsonResponse.class);
         System.out.println(jsonResponse.getData());
         return result1;
+    }
+
+
+    /**
+     * 本地jar包测试
+     * @return
+     */
+    @RequestMapping(value = "/jarTest" , method = RequestMethod.GET)
+    public ChenXiangYu jarTest(){
+        ChenXiangYu chenXiangYu = new ChenXiangYu();
+        chenXiangYu.setName("陈翔宇");
+        return chenXiangYu;
     }
 
 

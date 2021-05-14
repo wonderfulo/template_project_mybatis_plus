@@ -220,6 +220,15 @@
             <version>2.4.0</version>
         </dependency>
 
+        <!--本地jar包-->
+        <dependency>
+            <groupId>com.cxy2.cxc</groupId>
+            <artifactId>demo3</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/resources/lib/untitled3-1.0-SNAPSHOT.jar</systemPath>
+        </dependency>
+
 
 
         <dependency>
@@ -246,6 +255,11 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <!--这时候在项目中运行是没问题了，但是使用命令mvn clean package打包之后BOOT-INF\lib里面并没有demo3-0.0.1-SNAPSHOT.jar包-->
+                <!--需要加上下方配置-->
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>
             </plugin>
         </plugins>
     </build>
