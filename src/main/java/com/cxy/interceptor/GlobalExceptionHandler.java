@@ -25,18 +25,18 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
-    public JsonResponse<String> defaultExceptionHandler(HttpServletRequest request, Exception e){
-            e.printStackTrace();
-            return JsonResponse.fail("服务器开小差，请联系管理员");
+    public JsonResponse<String> defaultExceptionHandler(HttpServletRequest request, Exception e) {
+        e.printStackTrace();
+        return JsonResponse.fail("服务器开小差，请联系管理员");
     }
 
     @ExceptionHandler(value = MyException.class)
     @ResponseBody
-    public JsonResponse<Object> defaultExceptionHandler(HttpServletRequest request, MyException e){
+    public JsonResponse<Object> defaultExceptionHandler(HttpServletRequest request, MyException e) {
         System.out.println(e);
         return Optional.ofNullable(e)
                 .filter(e1 -> e1.getCode() != 0)
-                .map(code -> JsonResponse.fail(code.getCode(),code.getMsg()))
+                .map(code -> JsonResponse.fail(code.getCode(), code.getMsg()))
                 .orElse(JsonResponse.fail(e.getMsg()));
     }
 
