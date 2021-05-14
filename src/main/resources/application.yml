@@ -10,6 +10,7 @@ spring:
     name: template_project
   profiles:
 #    include: datasource,mybatis,thymeleaf,file,redis
+    include: log
     # 选择加载不同环境的配置文件 dev pre prod
     active: dev
   #mongodb配置

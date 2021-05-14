@@ -1,27 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration debug="false">
+<!--    logback.xml 比logback-spring.xml 加载时间更早，更名logback2.xml之后失效-->
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <Pattern>%d{HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n</Pattern>
-        </encoder>
+<!--        old 写法-->
+<!--        <encoder>-->
+<!--            <Pattern>${CONSOLE_LOG_PATTERN:-%d{yyyy-MM-dd HH:mm:ss} &#45;&#45; %-5level &#45;&#45; [%thread] &#45;&#45; %logger{50} -&#45;&#45; %msg %n}</Pattern>-->
+<!--        </encoder>-->
+
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>${CONSOLE_LOG_PATTERN:-%d{yyyy-MM-dd HH:mm:ss} -- %-5level -- [%thread] -- %logger{50} --- %msg %n}</pattern>
+        </layout>
     </appender>
 
 
     <logger name="ch.qos.logback" level="OFF" />
-
     <logger name="org.springframework" level="info" />
     <logger name="org.springframework.web" level="info" />
     <logger name="org.springframework.beans" level="info" />
     <logger name="org.springframework.jdbc.core" level="info" />
-
     <logger name="com.cxy" level="DEBUG" />
     <logger name="org.jboss" level="ERROR" />
     <logger name="org.hibernate" level="ERROR" />
     <logger name="org.hibernate.sql" level="ERROR" />
     <logger name="org.hibernate.stat" level="ERROR" />
     <logger name="org.hibernate.type.descriptor.sql" level="ERROR" />
-
     <logger name="org.eclipse.jetty.annotations" level="info" />
     <logger name="org.eclipse.jetty.http2" level="info" />
     <logger name="ch.qos.logback" level="warn" />

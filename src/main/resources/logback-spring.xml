@@ -4,12 +4,15 @@
 　　　　scan: 当此属性设置为true时，配置文件如果发生改变，将会被重新加载，默认值为true。
 　　　　scanPeriod: 设置监测配置文件是否有修改的时间间隔，如果没有给出时间单位，默认单位是毫秒。当scan为true时，此属性生效。默认的时间间隔为1分钟。
 　　　　debug: 当此属性设置为true时，将打印出logback内部日志信息，实时查看logback运行状态。默认值为false。-->
-<configuration scan="true" scanPeriod="60" debug="false">
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
 
     <!--控制台输出日志格式-->
-    <property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%d{yyyy-MM-dd HH:mm:ss} -- %-5level -- [%thread] -- %logger{50} --- %msg %n}"/>
+    <property name="CONSOLE_LOG_PATTERN" value="${CONSOLE_LOG_PATTERN:-%d{yyyy-MM-dd HH:mm:ss.SSS} -- %-5level -- [%thread] -- %logger{50} --- %msg %n}"/>
     <!--文件输出日志格式-->
-    <property name="FILE_LOG_PATTERN" value="${FILE_LOG_PATTERN:-%d{yyyy-MM-dd hh:mm:ss} -- %-5level -- [%thread] -- %logger{50} --- %msg %n}"/>
+    <property name="FILE_LOG_PATTERN" value="${FILE_LOG_PATTERN:-%d{yyyy-MM-dd HH:mm:ss.SSS} -- %-5level -- [%thread] -- %logger{50} --- %msg %n}"/>
+
+    <property name="LOG_HOME" value="D:/logs"/>
+    <property name="appName" value="cxy"/>
 
     <!--
         Appender: 设置日志信息的去向,常用的有以下几个
@@ -22,35 +25,31 @@
     <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
         <!--当环境是dev开发环境时，这部分配置才生效-->
         <springProfile name="dev">
-            <!--日志输出格式-->
-            <encoder>
-                <pattern>${CONSOLE_LOG_PATTERN}</pattern>
-            </encoder>
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} -- %-5level -- [%thread] -- %logger{50} -- %msg%n</pattern>
+            </layout>
         </springProfile>
         <!--当环境不是dev开发环境时，这部分配置才生效-->
-        <springProfile name="!dev">
-            <!--日志输出格式-->
-            <encoder>
-                <pattern>--%logger{50} --- %msg %n</pattern>
-            </encoder>
+        <springProfile name="prod">
+            <layout class="ch.qos.logback.classic.PatternLayout">
+                <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            </layout>
         </springProfile>
     </appender>
 
     <!--日志记录文件配置-->
     <appender name="fileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <!--当环境是production生产环境时，这部分配置才生效
-                即在production生产环境上，我们才将日志信息记录到日志文件中-->
-        <springProfile name="production">
-            <!--日志文件保存路径，可以是相对目录，也可以是绝对目录，如果上级目录不存在会自动创建 -->-->
-            <file>D:\idea\logs\pro\example-logging.log</file>
+        <springProfile name="dev">
+            <!--日志文件保存路径，可以是相对目录，也可以是绝对目录，如果上级目录不存在会自动创建 &ndash;&gt;-->
+            <file>${LOG_HOME}/${appName}.log</file>
             <!--基于大小和时间的轮转策略，当日志内容超出文件大小限制后，会自动生成一个文件来继续记录和重命名-->
             <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
                 <!--当日志内容超出文件大小限制后，会自动生成一个文件来继续记录，文件按下面格式命名-->
-                <fileNamePattern>D:\idea\logs\pro\example-logging-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+                <fileNamePattern>${LOG_HOME}/${appName}-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
                 <!--文件最大限制，默认10MB-->
                 <maxFileSize>10MB</maxFileSize>
                 <!--文件最大保存周期，默认7天-->
-                <maxHistory>7</maxHistory>
+                <maxHistory>30</maxHistory>
                 <!--所有归档文件总的大小限制-->
                 <totalSizeCap>20GB</totalSizeCap>
             </rollingPolicy>
@@ -60,17 +59,18 @@
             </encoder>
         </springProfile>
 
-        <springProfile name="dev">
-            <!--日志文件保存路径，可以是相对目录，也可以是绝对目录，如果上级目录不存在会自动创建 -->-->
-            <file>D:\idea\logs\dev\example-logging.log</file>
+        <!--当环境是production生产环境时，这部分配置才生效, 即在production生产环境上，我们才将日志信息记录到日志文件中-->
+        <springProfile name="prod">
+            <!--日志文件保存路径，可以是相对目录，也可以是绝对目录，如果上级目录不存在会自动创建 &ndash;&gt;-->
+            <file>${LOG_HOME}/${appName}.log</file>
             <!--基于大小和时间的轮转策略，当日志内容超出文件大小限制后，会自动生成一个文件来继续记录和重命名-->
             <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
                 <!--当日志内容超出文件大小限制后，会自动生成一个文件来继续记录，文件按下面格式命名-->
-                <fileNamePattern>D:\idea\logs\dev\example-logging-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+                <fileNamePattern>${LOG_HOME}/${appName}-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
                 <!--文件最大限制，默认10MB-->
                 <maxFileSize>10MB</maxFileSize>
                 <!--文件最大保存周期，默认7天-->
-                <maxHistory>7</maxHistory>
+                <maxHistory>30</maxHistory>
                 <!--所有归档文件总的大小限制-->
                 <totalSizeCap>20GB</totalSizeCap>
             </rollingPolicy>
@@ -80,6 +80,27 @@
             </encoder>
         </springProfile>
     </appender>
+
+    <!--    <property name="LOG_HOME" value="./logs/logback"/>-->
+
+
+    <!--    <appender name="appLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+    <!--        &lt;!&ndash; 指定日志文件的名称 &ndash;&gt;-->
+    <!--        <file>${LOG_HOME}/${appName}.log</file>-->
+
+    <!--        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+    <!--            <fileNamePattern>${LOG_HOME}/${appName}-%d{yyyy-MM-dd}-%i.log</fileNamePattern>-->
+    <!--            <MaxHistory>30</MaxHistory>-->
+    <!--            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">-->
+    <!--                <MaxFileSize>10MB</MaxFileSize>-->
+    <!--            </timeBasedFileNamingAndTriggeringPolicy>-->
+    <!--        </rollingPolicy>-->
+
+    <!--        <layout class="ch.qos.logback.classic.PatternLayout">-->
+    <!--            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [ %thread ] - [ %-5level ] [ %logger{50} : %line ] - %msg%n</pattern>-->
+    <!--        </layout>-->
+    <!--    </appender>-->
+
 
     <!--
         用来设置某一个包或者具体的某一个类的日志打印级别、以及指定<appender>。
@@ -93,8 +114,7 @@
             是否向上级logger传递打印信息。默认是true。
         <logger>可以包含零个或多个<appender-ref>元素，标识这个appender将会添加到这个logger
     -->
-    <logger name="com.cxy" level="DEBUG" />
-
+    <logger name="com.cxy" level="debug"/>
 
     <!--
         root节点是必选节点，用来指定最基础的日志输出级别，只有一个level属性。
