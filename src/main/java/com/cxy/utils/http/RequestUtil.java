@@ -1,6 +1,6 @@
 package com.cxy.utils.http;
 
-import com.cxy.util.AppUtil;
+import com.cxy.utils.bean.AppUtil;
 import org.springframework.core.env.Environment;
 
 import java.io.*;

@@ -1,20 +1,25 @@
 package com.cxy.exception;
 
 /**
- * 自定义异常类
+ * @author 陈翔宇
+ * @version 1.0.0
+ * @ClassName 我的异常
+ * @Description
+ * @createTime 2021年05月14日 09:38:00
  */
-public class MyException extends Exception {
-    //异常信息
-    private String message;
+public class MyException extends GeneralException {
 
-    //构造函数
-    public MyException(String message){
-        super(message);
-        this.message = message;
+    private static final long serialVersionUID = 4061103558731508181L;
+
+    public MyException(int code) {
+        super(code);
     }
 
-    //获取异常信息,由于构造函数调用了super(message),不用重写此方法
-    //public String getMessage(){
-    //    return message;
-    //}
+    public MyException(String msg) {
+        super(msg);
+    }
+
+    public MyException(int code, String msg) {
+        super(code, msg);
+    }
 }

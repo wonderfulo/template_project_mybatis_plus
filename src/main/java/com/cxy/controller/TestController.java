@@ -1,5 +1,7 @@
 package com.cxy.controller;
 
+import com.cxy.assert_package.AssertEx;
+import com.cxy.constant.exception.DisplayTaskEnumException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,4 +25,13 @@ public class TestController {
     public String success(){
         return "success";
     }
+
+    @RequestMapping("")
+    public String test(){
+        AssertEx.isNotEmpty(0L, DisplayTaskEnumException.ID_NOT_EXIST);
+        return "success";
+    }
+
+
+
 }

@@ -1,4 +1,4 @@
-package com.cxy.enums;
+package com.cxy.constant;
 
 /**
  * json返回编码枚举
