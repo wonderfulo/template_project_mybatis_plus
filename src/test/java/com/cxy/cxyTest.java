@@ -45,7 +45,6 @@ public class cxyTest {
         if (today.getYear() <= 2100){
             LocalDateTime localDateTime = today.plusDays(7);
             System.out.println(localDateTime.toString());
-            System.out.println(localDateTime.);
             circulationDay(localDateTime);
         }
     }
