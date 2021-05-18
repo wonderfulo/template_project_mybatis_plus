@@ -5,9 +5,11 @@ import com.alibaba.fastjson.JSONObject;
 import com.cxy.common.JsonResponse;
 import com.cxy.entity.User;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -19,26 +21,43 @@ import java.util.stream.Collectors;
  */
 public class cxyTest {
 
-    public static void main(String[] args) {
-//        String htmlUrl = "http://it.xxynet.com/h5-mb-collections/displayGuild/index.html#/swithPage?accessToken=$access_token&state=detail/displayTaskId:1080/shopId:5006982630/shopName:$shop_name/shopTaskStatus:4/reportNum:$report_num";
-//        htmlUrl = htmlUrl.replace("$shop_name", "666");
-//        System.out.println(htmlUrl);
-//        System.out.println($shop_name);
+    public static void main(String[] args) throws ParseException {
 
+        LocalDateTime today = LocalDateTime.now();
+        System.out.println("今天⽇期：" + today);
+        //获取年，⽉，⽇，周⼏
+        System.out.println("现在是哪年:"+today.getYear());
+        System.out.println("现在是哪⽉:"+today.getMonth());
+        System.out.println("现在是哪⽉(数字):"+today.getMonthValue());
+        System.out.println("现在是⼏号:"+today.getDayOfMonth());
+        System.out.println("现在是周⼏:"+today.getDayOfWeek());
+        circulationDay(today);
+//        String strDate = "2021-05-18 00:00:00";
+//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        Date date = simpleDateFormat.parse(strDate);
+//        for (int i = 0; i < 10000; i++) {
+//            date = getNextCycleWeek(date, null, 1);
+//            System.out.println(simpleDateFormat.format(date));
+//        }
+    }
 
-//        System.out.println(Boolean.FALSE.toString());
-
-//        A a = new A().build("张三").build(18).build(true);
-
-        String str = "[{\"userName\":\"陈翔宇\",\"age\":1},{\"userName\":\"陈翔宇2\"}]";
-        List<User> users = JSON.parseArray(str, User.class);
-        Map<String, User> collect = users.stream().collect(Collectors.toMap(User::getUserName, y -> y));
-
-        for (Map.Entry<String,User> entry : collect.entrySet()){
-            User value = entry.getValue();
-            value.setEmail("1");
+    private static void circulationDay(LocalDateTime today) {
+        if (today.getYear() <= 2100){
+            LocalDateTime localDateTime = today.plusDays(7);
+            System.out.println(localDateTime.toString());
+            System.out.println(localDateTime.);
+            circulationDay(localDateTime);
         }
-        System.out.println(users);
+    }
+
+    //获取下个周期调度日期(周)
+    public static Date getNextCycleWeek(Date startDate, Integer getTriggerDay, Integer everyNum) {
+        Calendar now = Calendar.getInstance();
+        now.setTime(startDate);
+        Integer step = everyNum * 7;
+        now.add(Calendar.DAY_OF_MONTH, step);
+        Date m = now.getTime();
+        return m;
     }
 
 
