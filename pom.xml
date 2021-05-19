@@ -229,11 +229,12 @@
             <systemPath>${project.basedir}/src/main/resources/lib/untitled3-1.0-SNAPSHOT.jar</systemPath>
         </dependency>
 
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>2.9.0</version>
-        </dependency>
+
+        <!--        <dependency>-->
+<!--            <groupId>redis.clients</groupId>-->
+<!--            <artifactId>jedis</artifactId>-->
+<!--            <version>2.9.0</version>-->
+<!--        </dependency>-->
 
 
 

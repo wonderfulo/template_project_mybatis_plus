@@ -1,6 +1,7 @@
 package com.cxy;
 
 import com.cxy.entity.User;
+import com.cxy.mapper.SysUserMapper;
 import com.cxy.mapper.UserMapper;
 import com.cxy.service.mongodb.MongoDbSeniorService;
 import org.junit.Assert;
@@ -18,7 +19,7 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 //该注解会启动springboot项目
-//@RunWith(SpringRunner.class)
+@RunWith(SpringRunner.class)
 //只有该注解 不会启动springboot项目
 @SpringBootTest
 public class SampleTest {
@@ -31,6 +32,20 @@ public class SampleTest {
 
     @Autowired
     private MongoDbSeniorService mongoDbSeniorService;
+
+    @Autowired
+    private SysUserMapper sysUserMapper;
+
+
+    /**
+     * 正则表达式去html
+     */
+    @Test
+    public void concatWsTest() {
+        List<String> listTest = sysUserMapper.getConcatWsTest();
+        System.out.println(123);
+    }
+
 
 
     /**
