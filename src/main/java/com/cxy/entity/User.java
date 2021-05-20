@@ -1,14 +1,14 @@
 package com.cxy.entity;
 
-import java.io.Serializable;
-
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,7 +19,7 @@ import lombok.experimental.Accessors;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 //@TableName(value = "user")
-public class User implements Serializable {
+public class User implements Cloneable,Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -56,5 +56,40 @@ public class User implements Serializable {
      */
     private Boolean isDelete;
 
+    private List<String> list = new ArrayList<>();
+
+
+    @Override
+    protected User clone() throws CloneNotSupportedException {
+        return (User) super.clone();
+    }
+
+
+    /**
+     * 深拷贝
+     * 当对象有嵌套关系时，每个嵌套的对象都需要实现深拷贝
+     * @return
+     */
+    public User deepClone() {
+
+        try {
+            //输出 序列化
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            oos.writeObject(this);
+
+            //输入 反序列化
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+            ObjectInputStream ois = new ObjectInputStream(bais);
+            User copyObj = (User) ois.readObject();
+
+            return copyObj;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+
+
+    }
 
 }
