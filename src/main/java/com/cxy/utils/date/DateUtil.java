@@ -14,10 +14,7 @@ import java.util.Date;
 /**
  * @author ：陈翔宇
  * @date ：2020/12/2 15:03
- * @description：加密工具类
- * @modified By：
- * @version: $
- * 时间工具类
+ * @description：时间工具类
  */
 public class DateUtil {
 	private static Log log = LogFactory.getLog(DateUtil.class);
