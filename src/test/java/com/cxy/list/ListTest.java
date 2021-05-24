@@ -69,9 +69,6 @@ public class ListTest{
         System.out.println("666");
     }
 
-    public static <Ex extends Object> void get(Ex ex){
-
-    }
 
 
     /**
@@ -135,7 +132,7 @@ public class ListTest{
      * 过滤器测试
      */
     @Test
-    public void List() {
+    public void filterList() {
         ArrayList<Integer> intList = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             intList.add(i);
@@ -162,4 +159,23 @@ public class ListTest{
         intList2.retainAll(intList);
         System.out.println(intList2);
     }
+
+    /**
+     * 删除测试
+     */
+    @Test
+    public void removeIndex() {
+        ArrayList<Integer> intList = new ArrayList<>();
+        for (int i = 0; i < 20; i++) {
+            intList.add(i);
+        }
+//        intList.subList(0,10).clear();
+        //截取
+        List<Integer> integers = intList.subList(0, 10);
+        //移除，因为引用传递，所以移除该list，相当于移除元集合中的数据
+        integers.clear();
+        System.out.println(intList);
+
+    }
+
 }
