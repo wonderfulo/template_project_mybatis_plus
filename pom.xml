@@ -236,6 +236,12 @@
 <!--            <version>2.9.0</version>-->
 <!--        </dependency>-->
 
+        <!--规则引擎-->
+        <dependency>
+            <groupId>com.deliveredtechnologies</groupId>
+            <artifactId>rulebook-core</artifactId>
+            <version>0.11</version>
+        </dependency>
 
 
         <dependency>
