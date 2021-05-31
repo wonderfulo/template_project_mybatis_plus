@@ -19,7 +19,7 @@ import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 //该注解会启动springboot项目
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 //只有该注解 不会启动springboot项目
 @SpringBootTest
 public class SampleTest {
@@ -36,6 +36,16 @@ public class SampleTest {
     @Autowired
     private SysUserMapper sysUserMapper;
 
+
+    /**
+     * concatWsTest
+     */
+    @Test
+    public void strToDoule() {
+        String a = "6.00";
+        Double d= Double.parseDouble(a);
+        System.out.println(d);
+    }
 
     /**
      * concatWsTest

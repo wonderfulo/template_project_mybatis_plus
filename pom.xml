@@ -237,11 +237,26 @@
 <!--        </dependency>-->
 
         <!--规则引擎-->
+<!--        <dependency>-->
+<!--            <groupId>com.deliveredtechnologies</groupId>-->
+<!--            <artifactId>rulebook-core</artifactId>-->
+<!--            <version>0.11</version>-->
+<!--        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.openl/org.openl.core -->
         <dependency>
-            <groupId>com.deliveredtechnologies</groupId>
-            <artifactId>rulebook-core</artifactId>
-            <version>0.11</version>
+            <groupId>org.openl</groupId>
+            <artifactId>org.openl.core</artifactId>
+            <version>5.23.8</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.openl.rules/org.openl.rules -->
+        <dependency>
+            <groupId>org.openl.rules</groupId>
+            <artifactId>org.openl.rules</artifactId>
+            <version>5.23.8</version>
+        </dependency>
+
 
 
         <dependency>
