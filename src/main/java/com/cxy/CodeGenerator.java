@@ -1,14 +1,15 @@
 //package com.cxy;
 //
+//
 //import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 //import com.baomidou.mybatisplus.core.toolkit.StringPool;
-//import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 //import com.baomidou.mybatisplus.generator.AutoGenerator;
 //import com.baomidou.mybatisplus.generator.InjectionConfig;
 //import com.baomidou.mybatisplus.generator.config.*;
 //import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 //import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 //import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+//import org.openl.util.StringUtils;
 //
 //import java.util.ArrayList;
 //import java.util.List;
@@ -64,8 +65,8 @@
 //        // 包配置
 //        PackageConfig pc = new PackageConfig();
 ////        pc.setModuleName(scanner("模块名"));
-//        pc.setModuleName("cxy");
 //        pc.setParent("com");
+//        pc.setModuleName("cxy");
 //        mpg.setPackageInfo(pc);
 //
 //        // 自定义配置
@@ -144,9 +145,7 @@
 ////        strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));
 ////        strategy.setInclude("sys_user".split(","));
 //        strategy.setInclude(("" +
-//                "sys_user" +
-//                ",nation" +
-//                ",tm_document"
+//                "organizational_config"
 //        ).split(","));
 //        strategy.setControllerMappingHyphenStyle(true);
 //        strategy.setTablePrefix(pc.getModuleName() + "_");
