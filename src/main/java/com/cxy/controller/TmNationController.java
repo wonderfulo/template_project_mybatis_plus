@@ -5,6 +5,7 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.cxy.annonation.MyLog;
 import com.cxy.common.JsonResponse;
 import com.cxy.entity.TmNation;
 import com.cxy.entity.SysUser;
@@ -119,6 +120,7 @@ public class TmNationController {
     @PutMapping("")
     @ApiOperation("修改民族")
     @Transactional
+    @MyLog
     public JsonResponse<String> update(@RequestParam(value = "accessToken", required = true) String accessToken, TmNation tmNation) {
         if (tmNation.getNationId() == null) {
             return JsonResponse.fail("nationId: 必要参数");
