@@ -1,6 +1,6 @@
 package com.cxy.service;
 
-import com.cxy.entity.OrganizationalConfig;
+import com.cxy.entity.TmOrganizationalConfig;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author 陈翔宇
  * @since 2021-06-02
  */
-public interface IOrganizationalConfigService extends IService<OrganizationalConfig> {
+public interface IOrganizationalConfigService extends IService<TmOrganizationalConfig> {
 
 }

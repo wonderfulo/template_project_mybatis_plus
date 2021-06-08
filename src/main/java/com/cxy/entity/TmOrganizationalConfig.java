@@ -15,7 +15,7 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class OrganizationalConfig extends BaseEntity {
+public class TmOrganizationalConfig extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 

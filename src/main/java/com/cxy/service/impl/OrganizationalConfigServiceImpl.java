@@ -1,6 +1,6 @@
 package com.cxy.service.impl;
 
-import com.cxy.entity.OrganizationalConfig;
+import com.cxy.entity.TmOrganizationalConfig;
 import com.cxy.mapper.OrganizationalConfigMapper;
 import com.cxy.service.IOrganizationalConfigService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2021-06-02
  */
 @Service
-public class OrganizationalConfigServiceImpl extends ServiceImpl<OrganizationalConfigMapper, OrganizationalConfig> implements IOrganizationalConfigService {
+public class OrganizationalConfigServiceImpl extends ServiceImpl<OrganizationalConfigMapper, TmOrganizationalConfig> implements IOrganizationalConfigService {
 
 }

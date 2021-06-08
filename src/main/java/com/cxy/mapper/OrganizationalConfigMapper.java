@@ -1,6 +1,6 @@
 package com.cxy.mapper;
 
-import com.cxy.entity.OrganizationalConfig;
+import com.cxy.entity.TmOrganizationalConfig;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author 陈翔宇
  * @since 2021-06-02
  */
-public interface OrganizationalConfigMapper extends BaseMapper<OrganizationalConfig> {
+public interface OrganizationalConfigMapper extends BaseMapper<TmOrganizationalConfig> {
 
 }
