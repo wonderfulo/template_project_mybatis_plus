@@ -1,6 +1,6 @@
 package com.cxy.mapper;
 
-import com.cxy.entity.SysUser;
+import com.cxy.entity.TmSysUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
  * @author 陈翔宇
  * @since 2020-12-10
  */
-public interface SysUserMapper extends BaseMapper<SysUser> {
+public interface SysUserMapper extends BaseMapper<TmSysUser> {
 
     List<Object> getListTest();
 

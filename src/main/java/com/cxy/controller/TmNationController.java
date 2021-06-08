@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.cxy.annonation.MyLog;
 import com.cxy.common.JsonResponse;
 import com.cxy.entity.TmNation;
-import com.cxy.entity.SysUser;
+import com.cxy.entity.TmSysUser;
 import com.cxy.service.ITmNationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -44,9 +44,9 @@ public class TmNationController {
             return JsonResponse.fail("nationName: 必要参数");
         }
 
-        SysUser sysUser = new SysUser();
-        sysUser.setSysUserId(123L);
-        tmNation.addBuild(sysUser);
+        TmSysUser tmSysUser = new TmSysUser();
+        tmSysUser.setSysUserId(123L);
+        tmNation.addBuild(tmSysUser);
 
         boolean save = nationService.save(tmNation);
         if (save) {
@@ -65,12 +65,12 @@ public class TmNationController {
             return JsonResponse.fail("nationId: 必要参数");
         }
 
-        SysUser sysUser = new SysUser();
-        sysUser.setSysUserId(456L);
+        TmSysUser tmSysUser = new TmSysUser();
+        tmSysUser.setSysUserId(456L);
 
         TmNation tmNation = new TmNation();
         tmNation.setNationId(nationId);
-        tmNation.delBuild(sysUser);
+        tmNation.delBuild(tmSysUser);
 
         boolean update = nationService.updateById(tmNation);
 
@@ -134,10 +134,10 @@ public class TmNationController {
 
         BeanUtil.copyProperties(tmNation, oldTmNation, CopyOptions.create().setIgnoreNullValue(true));
 
-        SysUser sysUser = new SysUser();
-        sysUser.setSysUserId(888L);
+        TmSysUser tmSysUser = new TmSysUser();
+        tmSysUser.setSysUserId(888L);
 
-        oldTmNation.updateBuild(sysUser);
+        oldTmNation.updateBuild(tmSysUser);
 
         boolean update = nationService.updateById(oldTmNation);
 

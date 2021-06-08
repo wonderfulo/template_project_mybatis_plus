@@ -60,23 +60,23 @@ public class BaseEntity implements Serializable {
     /**
      * 对象公用参数基础构建
      *
-     * @param sysUser
+     * @param tmSysUser
      */
-    public void baseBuild(SysUser sysUser) {
+    public void baseBuild(TmSysUser tmSysUser) {
         if (this.getCreateUser() == null) {
-            baseCreateBuild(sysUser);
+            baseCreateBuild(tmSysUser);
         }
-        baseUpdateBuild(sysUser);
+        baseUpdateBuild(tmSysUser);
     }
 
     /**
      * 对象公用参数基础构建
      * 创建信息
      *
-     * @param sysUser
+     * @param tmSysUser
      */
-    public void baseCreateBuild(SysUser sysUser) {
-        this.setCreateUser(sysUser.getSysUserId());
+    public void baseCreateBuild(TmSysUser tmSysUser) {
+        this.setCreateUser(tmSysUser.getSysUserId());
         this.setCreateTime(new Date());
     }
 
@@ -84,10 +84,10 @@ public class BaseEntity implements Serializable {
      * 对象公用参数基础构建
      * 更新信息
      *
-     * @param sysUser
+     * @param tmSysUser
      */
-    public void baseUpdateBuild(SysUser sysUser) {
-        this.setUpdateUser(sysUser.getSysUserId());
+    public void baseUpdateBuild(TmSysUser tmSysUser) {
+        this.setUpdateUser(tmSysUser.getSysUserId());
         this.setUpdateTime(new Date());
     }
 
@@ -95,32 +95,32 @@ public class BaseEntity implements Serializable {
      * 对象公用参数基础构建
      * 添加对象时使用
      *
-     * @param sysUser
+     * @param tmSysUser
      */
-    public void addBuild(SysUser sysUser) {
+    public void addBuild(TmSysUser tmSysUser) {
         this.setIsDelete(0);
-        baseBuild(sysUser);
+        baseBuild(tmSysUser);
     }
 
     /**
      * 对象公用参数基础构建
      * 删除对象时使用
      *
-     * @param sysUser
+     * @param tmSysUser
      */
-    public void delBuild(SysUser sysUser) {
+    public void delBuild(TmSysUser tmSysUser) {
         this.setIsDelete(1);
-        baseUpdateBuild(sysUser);
+        baseUpdateBuild(tmSysUser);
     }
 
     /**
      * 对象公用参数基础构建
      * 更新对象时使用
      *
-     * @param sysUser
+     * @param tmSysUser
      */
-    public void updateBuild(SysUser sysUser) {
-        baseUpdateBuild(sysUser);
+    public void updateBuild(TmSysUser tmSysUser) {
+        baseUpdateBuild(tmSysUser);
     }
 
 }

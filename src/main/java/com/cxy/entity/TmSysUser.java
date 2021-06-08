@@ -20,7 +20,7 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-public class SysUser extends BaseEntity {
+public class TmSysUser extends BaseEntity {
 
     private static final long serialVersionUID = 1L;
 

@@ -1,6 +1,6 @@
 package com.cxy.service;
 
-import com.cxy.entity.SysUser;
+import com.cxy.entity.TmSysUser;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author 陈翔宇
  * @since 2020-12-10
  */
-public interface ISysUserService extends IService<SysUser> {
+public interface ISysUserService extends IService<TmSysUser> {
 
 }
