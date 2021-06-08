@@ -13,7 +13,7 @@ import java.util.List;
  * @author 陈翔宇
  * @since 2020-12-10
  */
-public interface SysUserMapper extends BaseMapper<TmSysUser> {
+public interface TmSysUserMapper extends BaseMapper<TmSysUser> {
 
     List<Object> getListTest();
 

@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author 陈翔宇
  * @since 2021-06-02
  */
-public interface OrganizationalConfigMapper extends BaseMapper<TmOrganizationalConfig> {
+public interface TmOrganizationalConfigMapper extends BaseMapper<TmOrganizationalConfig> {
 
 }

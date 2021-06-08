@@ -1,21 +1,17 @@
 package com.cxy;
 
 import com.cxy.entity.User;
-import com.cxy.mapper.SysUserMapper;
+import com.cxy.mapper.TmSysUserMapper;
 import com.cxy.mapper.UserMapper;
 import com.cxy.service.mongodb.MongoDbSeniorService;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.servlet.ServletContext;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 //该注解会启动springboot项目
@@ -34,7 +30,7 @@ public class SampleTest {
     private MongoDbSeniorService mongoDbSeniorService;
 
     @Autowired
-    private SysUserMapper sysUserMapper;
+    private TmSysUserMapper tmSysUserMapper;
 
 
     /**
@@ -52,7 +48,7 @@ public class SampleTest {
      */
     @Test
     public void concatWsTest() {
-        List<String> listTest = sysUserMapper.getConcatWsTest();
+        List<String> listTest = tmSysUserMapper.getConcatWsTest();
         System.out.println(123);
     }
 
