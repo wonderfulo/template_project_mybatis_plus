@@ -28,7 +28,7 @@ import java.util.Map;
  * @since 2020-12-10
  */
 @RestController
-@RequestMapping("/nation")
+@RequestMapping("api/nation")
 @Api(value = "nationAPI",
         description = "民族API接口")
 public class TmNationController {
@@ -150,14 +150,14 @@ public class TmNationController {
     }
 
 
-    @GetMapping("/{nationId}")
+    @GetMapping("/find/{nationId}")
     @ApiOperation(
             value = "获取民族对象",
             notes = "未被删除的",
             httpMethod = "GET",
             response = TmNation.class,
             responseContainer = "Object")
-    public JsonResponse<TmNation> get(@RequestParam(value = "accessToken", required = true) String accessToken, @PathVariable("nationId") Long nationId) {
+    public JsonResponse<TmNation> find(@RequestParam(value = "accessToken", required = true) String accessToken, @PathVariable("nationId") Long nationId) {
         if (nationId == null) {
             return JsonResponse.fail("nationId: 必要参数");
         }
