@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.UUID;
 
 @SpringBootTest
@@ -62,5 +63,62 @@ public class dateUtilTest {
         now.add(Calendar.DAY_OF_MONTH, step);
         Date m = now.getTime();
         return m;
+    }
+
+
+    @Test
+    public void timeTest(){
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+        Calendar cld = Calendar.getInstance(Locale.CHINA);
+//        cld.setFirstDayOfWeek(Calendar.MONDAY);//以周一为首日
+        cld.setTimeInMillis(System.currentTimeMillis());//当前时间
+
+        cld.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);//周一
+        System.out.println(df.format(cld.getTime()));
+
+        cld.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);//周日
+        System.out.println(df.format(cld.getTime()));
+
+        cld.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);//周二
+        System.out.println(df.format(cld.getTime()));
+    }
+
+
+    private static final String week_unit = "week";
+    private static final String month_unit = "month";
+    @Test
+    public void dispatchTime(){
+        Date referenceTime = DateUtil.formatStringToDateWithCheck("2021-07-09 08:00:00");
+        String  unit = week_unit;
+        getNextDispatchTime(referenceTime, unit,4);
+    }
+
+    public Date getNextDispatchTime(Date referenceTime,String unit,int triggerDay) {
+
+        if (week_unit.equals(unit)) {
+            Calendar calendar = Calendar.getInstance(Locale.CHINA);
+            calendar.setFirstDayOfWeek(Calendar.MONDAY);
+            calendar.setTime(referenceTime);
+            //获得本周一的时间
+            calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+            Date time = calendar.getTime();
+
+            calendar.add(Calendar.DAY_OF_MONTH,triggerDay);
+            time = calendar.getTime();
+
+            //仅保留年月日
+            Date referenceTimeTemp = DateUtil.formatStringToDateWithCheck(DateUtil.formatDate2(referenceTime));
+            Date timeTemp = DateUtil.formatStringToDateWithCheck(DateUtil.formatDate2(time));
+
+            
+
+            if (timeTemp.before(referenceTimeTemp)){
+
+            }else {
+                return timeTemp;
+            }
+        }
+
+        return null;
     }
 }
