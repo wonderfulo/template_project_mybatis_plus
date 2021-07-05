@@ -38,7 +38,7 @@ public class BaseEntity implements Serializable {
      * * @JsonFormat: 返回数据时，格式转换
      * * @DateTimeFormat: 请求数据时，格式转换
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh",timezone = "GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
 
@@ -52,7 +52,7 @@ public class BaseEntity implements Serializable {
      * * @JsonFormat: 返回数据时，格式转换
      * * @DateTimeFormat: 请求数据时，格式转换
      */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", locale = "zh",timezone = "GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date updateTime;
 
