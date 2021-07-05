@@ -15,8 +15,10 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 /**
@@ -39,10 +41,11 @@ public class TmNationController {
     @PostMapping("")
     @ApiOperation("添加民族")
     @Transactional
-    public JsonResponse<TmNation> add(@RequestParam(value = "accessToken", required = true) String accessToken, TmNation tmNation) {
-        if (StringUtils.isEmpty(tmNation.getNationName())) {
-            return JsonResponse.fail("nationName: 必要参数");
-        }
+    public JsonResponse<TmNation> add(@RequestParam(value = "accessToken", required = true) String accessToken,
+                                      @Validated @RequestBody TmNation tmNation) {
+//        if (StringUtils.isEmpty(tmNation.getNationName())) {
+//            return JsonResponse.fail("nationName: 必要参数");
+//        }
 
         TmSysUser tmSysUser = new TmSysUser();
         tmSysUser.setSysUserId(123L);

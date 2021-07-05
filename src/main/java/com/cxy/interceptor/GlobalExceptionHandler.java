@@ -5,11 +5,18 @@ import com.cxy.exception.MyException;
 import com.cxy.exception.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -51,4 +58,27 @@ public class GlobalExceptionHandler {
         }
         return JsonResponse.fail(e.getMsg());
     }
+
+    /**
+     * 处理@Validated参数校验失败异常
+     * @param exception 异常类
+     * @return 响应
+     */
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseBody
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public JsonResponse<String> exceptionHandler(MethodArgumentNotValidException exception){
+        BindingResult result = exception.getBindingResult();
+        StringBuilder stringBuilder = new StringBuilder();
+        if (result.hasErrors()) {
+            List<ObjectError> errors = result.getAllErrors();
+            errors.forEach(p -> {
+                FieldError fieldError = (FieldError) p;
+//                log.warn("Bad Request Parameters: dto entity [{}],field [{}],message [{}]",fieldError.getObjectName(), fieldError.getField(), fieldError.getDefaultMessage());
+                stringBuilder.append(fieldError.getDefaultMessage());
+            });
+        }
+        return JsonResponse.fail(stringBuilder.toString());
+    }
+
 }
