@@ -1,6 +1,7 @@
 package com.cxy.controller.upload;
 
 import com.cxy.common.JsonResponse;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,7 +11,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @program: template_project_mybatis_plus
@@ -59,6 +62,17 @@ public class UploadController {
                 return "上传第" + (i++) + "个文件失败";
             }
         }
+
+//        MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+////        List<MultipartFile> fileList = multipartRequest.getFiles("file");
+//        Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+//        if(CollectionUtils.isEmpty(fileMap)){
+//            return "请上传文件,注意文件的name属性为file";
+//        }
+//        Collection<MultipartFile> files = fileMap.values();
+//        for(MultipartFile file:files){
+//            System.out.println(file.getName());
+//        }
 
         return "上传成功";
 
