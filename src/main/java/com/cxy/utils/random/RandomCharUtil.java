@@ -4,7 +4,7 @@ package com.cxy.utils.random;
  * 生成随机字符
  * @author 陈翔宇
  */
-public class RandomChar{
+public class RandomCharUtil {
 	/**
 	 * 随机生成字符：含大写，小写，数字
 	 * @return String*/
