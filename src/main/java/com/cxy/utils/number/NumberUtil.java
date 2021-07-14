@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.text.NumberFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -249,6 +250,19 @@ public class NumberUtil {
             return null;
         }
         return str.trim();
+    }
+
+    /**
+     * 保留两位小数
+     * @param var
+     * @return
+     */
+    public static Double retainTwoDecimals(double var) {
+        NumberFormat nbf=NumberFormat.getInstance();
+        nbf.setMinimumFractionDigits(2);
+        nbf.setMaximumFractionDigits(2);
+        String format = nbf.format(var);
+        return Double.parseDouble(format);
     }
 
 
