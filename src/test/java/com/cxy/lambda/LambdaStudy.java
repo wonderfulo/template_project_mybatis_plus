@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.lang.Character.isDigit;
@@ -33,6 +34,12 @@ public class LambdaStudy {
 
     @Autowired
     private IUserService userService;
+
+    @Test
+    public void LinkHashMap(){
+//        LinkedHashMap<String, LinkedHashMap<String, List<Object[]>>> collect = tempList.stream().filter(x -> !"".equals(x[0].toString()))
+//                .collect(Collectors.groupingBy(e -> e[0].toString(), LinkedHashMap::new, Collectors.groupingBy(e -> e[finalElementIndex].toString(), LinkedHashMap::new, Collectors.toList())));
+    }
 
     @Test
     public void test1() throws MyException {
