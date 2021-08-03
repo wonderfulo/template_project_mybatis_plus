@@ -50,8 +50,8 @@ public class mysqlTest {
 			}*/
             /*connection.close();*/
             DriverManager.deregisterDriver(new com.mysql.jdbc.Driver());
-            Connection connection=(Connection) DriverManager.getConnection("jdbc:mysql://49.234.132.146:3306/shopguide_db","it_test","vsvz_root");
-            PreparedStatement preparedStatement=(PreparedStatement) connection.prepareStatement("show full fields from bbs_activity");
+            Connection connection=(Connection) DriverManager.getConnection("jdbc:mysql://211.159.215.254:61499/share_center","root","cjdg_CesH1-2OO!");
+            PreparedStatement preparedStatement=(PreparedStatement) connection.prepareStatement("show full fields from share_tag");
             ResultSet resultSet=preparedStatement.executeQuery();
             HashMap<Object, Object> map = new LinkedHashMap<>();
             while (resultSet.next()){

@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.text.NumberFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -264,6 +265,9 @@ public class NumberUtil {
         String format = nbf.format(var);
         return Double.parseDouble(format);
     }
+
+//    //保留两位小数
+//    userAmount = userAmount.setScale(2, RoundingMode.HALF_UP);
 
 
     /**

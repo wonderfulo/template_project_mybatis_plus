@@ -26,7 +26,7 @@ public enum DisplayTaskScoreRuleEnum {
     }
 
     public static boolean isExist(String scoreRule){
-        if (StringUtils.isNotEmpty(scoreRule)){
+        if (StringUtils.isEmpty(scoreRule)){
             return false;
         }
         for (DisplayTaskScoreRuleEnum item: DisplayTaskScoreRuleEnum.values()) {
@@ -38,12 +38,12 @@ public enum DisplayTaskScoreRuleEnum {
     }
 
     public static DisplayTaskScoreRuleEnum get(String scoreRule){
-        if (StringUtils.isNotEmpty(scoreRule)){
+        if (StringUtils.isEmpty(scoreRule)){
             return  null;
         }
         for (DisplayTaskScoreRuleEnum item: DisplayTaskScoreRuleEnum.values()) {
-            if (item.get(scoreRule) != null){
-                return item.get(scoreRule);
+            if (item.getScoreRule().equals(scoreRule)){
+                return item;
             }
         }
         return null;
