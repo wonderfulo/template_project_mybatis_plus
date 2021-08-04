@@ -51,7 +51,7 @@ public class mysqlTest {
             /*connection.close();*/
             DriverManager.deregisterDriver(new com.mysql.jdbc.Driver());
             Connection connection=(Connection) DriverManager.getConnection("jdbc:mysql://211.159.215.254:61499/share_center","root","cjdg_CesH1-2OO!");
-            PreparedStatement preparedStatement=(PreparedStatement) connection.prepareStatement("show full fields from share_tag");
+            PreparedStatement preparedStatement=(PreparedStatement) connection.prepareStatement("show full fields from material");
             ResultSet resultSet=preparedStatement.executeQuery();
             HashMap<Object, Object> map = new LinkedHashMap<>();
             while (resultSet.next()){
@@ -73,6 +73,13 @@ public class mysqlTest {
         }
 
     }
+
+
+    /**
+     * sql写法，给表追加临时列
+     * 	select * from om_pk_index i
+     * 	JOIN ( SELECT 315287597 AS user_id FROM DUAL ) a
+     */
 
 
 }
