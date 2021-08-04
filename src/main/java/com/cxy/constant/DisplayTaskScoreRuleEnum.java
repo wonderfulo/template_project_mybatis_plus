@@ -29,10 +29,8 @@ public enum DisplayTaskScoreRuleEnum {
         if (StringUtils.isEmpty(scoreRule)){
             return false;
         }
-        for (DisplayTaskScoreRuleEnum item: DisplayTaskScoreRuleEnum.values()) {
-            if (item.get(scoreRule) != null){
-                return true;
-            }
+        if (get(scoreRule) != null){
+            return true;
         }
         return false;
     }
