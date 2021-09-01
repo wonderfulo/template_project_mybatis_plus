@@ -3,7 +3,11 @@ package com.cxy.thread;
 import com.google.common.util.concurrent.ThreadFactoryBuilder;
 import org.junit.Test;
 import org.junit.platform.commons.util.StringUtils;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.concurrent.*;
@@ -19,7 +23,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  */
 
 //该注解会启动springboot项目
-//@RunWith(SpringRunner.class)
+@RunWith(SpringRunner.class)
 //只有该注解 不会启动springboot项目
 @SpringBootTest
 public class ThreadTest {
@@ -38,6 +42,11 @@ public class ThreadTest {
             strings.add(i + "");
         }
     }
+
+
+
+    @Autowired
+    private ThreadPoolTaskExecutor taskExecutor;
 
 
     @Test
@@ -75,5 +84,20 @@ public class ThreadTest {
 
             });
         }
+    }
+
+    @Test
+    public void ThreadPoolTaskExecutorTest(){
+        taskExecutor.execute(() -> {
+            System.out.println(111);
+            System.out.println(222);
+            System.out.println(33);
+        });
+        taskExecutor.execute(() -> {
+            System.out.println(444);
+            System.out.println(555);
+            System.out.println(666);
+        });
+        System.out.println(999);
     }
 }
