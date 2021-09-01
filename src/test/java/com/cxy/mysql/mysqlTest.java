@@ -33,6 +33,8 @@ import java.util.regex.Pattern;
 @SpringBootTest
 public class mysqlTest {
 
+    // 格式化时间戳：DATE_FORMAT(g.create_time ,'%Y-%m-%d %H:%i:%s')
+
 
     @Test
     public void createMysqlComment() {
